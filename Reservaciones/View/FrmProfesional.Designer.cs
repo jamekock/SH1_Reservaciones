@@ -249,7 +249,7 @@
             this.pictureBox2.Image = global::Reservaciones.Properties.Resources.STOCK;
             this.pictureBox2.Location = new System.Drawing.Point(0, -1);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(891, 604);
+            this.pictureBox2.Size = new System.Drawing.Size(908, 640);
             this.pictureBox2.TabIndex = 58;
             this.pictureBox2.TabStop = false;
             // 

@@ -188,7 +188,7 @@
             this.BtnDel.TabIndex = 28;
             this.BtnDel.Text = "Del";
             this.BtnDel.UseVisualStyleBackColor = false;
-            this.BtnDel.Click += new System.EventHandler(this.BtnDel_Click_1);
+            this.BtnDel.Click += new System.EventHandler(this.BtnDel_Click);
             // 
             // BtnEnter
             // 
@@ -198,7 +198,7 @@
             this.BtnEnter.TabIndex = 29;
             this.BtnEnter.Text = "Enter";
             this.BtnEnter.UseVisualStyleBackColor = false;
-            this.BtnEnter.Click += new System.EventHandler(this.BtnEnter_Click_1);
+            this.BtnEnter.Click += new System.EventHandler(this.BtnEnter_Click);
             // 
             // BtnRegistrar
             // 
@@ -208,7 +208,7 @@
             this.BtnRegistrar.TabIndex = 30;
             this.BtnRegistrar.Text = "Registrar";
             this.BtnRegistrar.UseVisualStyleBackColor = false;
-            this.BtnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click_1);
+            this.BtnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
             // 
             // BtnActualizar
             // 
@@ -218,7 +218,7 @@
             this.BtnActualizar.TabIndex = 31;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = false;
-            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click_1);
+            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
             // 
             // BtnEliminar
             // 
@@ -228,7 +228,7 @@
             this.BtnEliminar.TabIndex = 32;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
-            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click_1);
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // Dgv_Visitante
             // 
@@ -239,13 +239,15 @@
             this.Dgv_Visitante.Name = "Dgv_Visitante";
             this.Dgv_Visitante.Size = new System.Drawing.Size(495, 150);
             this.Dgv_Visitante.TabIndex = 33;
+            this.Dgv_Visitante.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Visitante_CellClick);
+            this.Dgv_Visitante.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Visitante_CellDoubleClick);
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Reservaciones.Properties.Resources.STOCK;
             this.pictureBox2.Location = new System.Drawing.Point(0, -3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(891, 604);
+            this.pictureBox2.Size = new System.Drawing.Size(908, 640);
             this.pictureBox2.TabIndex = 35;
             this.pictureBox2.TabStop = false;
             // 

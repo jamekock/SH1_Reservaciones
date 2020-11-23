@@ -117,7 +117,7 @@ namespace Reservaciones
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "update "+dual+" set nombre='" +nombre + "',apellido='" + apellido + "',documento_identidad='" + documento + "',documento_tipo='" + tipo + "' where id='" + id + "';";
+                cmd.CommandText = "update "+dual+" set nombre='" +nombre + "',apellido='" + apellido + "',documento_identidad='" + documento + "',documento_tipo='" + tipo + "' where id_"+dual+"='" + id + "';";
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;

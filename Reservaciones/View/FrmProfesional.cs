@@ -39,14 +39,21 @@ namespace Reservaciones.View
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            DocumentoTipo();
-            bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, telefonos, tipos);
-            if (rs)
+            if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumentoIdentidad.Text != "" && MyProperty != "" && telefonos != null && tipos != null)
             {
-                MessageBox.Show("Registro  insertado  correctamente");
+                DocumentoTipo();
+                bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, telefonos, tipos);
+                if (rs)
+                {
+                    MessageBox.Show("Registro  insertado  correctamente");
+                }
+                RestablecerControles();
+                Consultar();
             }
-            RestablecerControles();
-            Consultar();
+            else
+            {
+                MessageBox.Show("Debes llenar todos los campos");
+            }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)

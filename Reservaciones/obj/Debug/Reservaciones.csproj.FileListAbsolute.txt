@@ -36,3 +36,4 @@ C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.p
 C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmDisponibilidad.resources
 C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmProfesional.resources
 C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmVisitante.resources
+C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmGenerar.resources

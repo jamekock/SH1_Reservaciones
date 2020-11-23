@@ -19,9 +19,22 @@ namespace Reservaciones
 
         private void VisitanteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            View.FrmVisitante ventana1 = new View.FrmVisitante();
-            ventana1.Show();
+            new View.FrmVisitante().Show(); 
+        }
+
+        private void ProfesionalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new View.FrmProfesional().Show();
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmCita_Click(object sender, EventArgs e)
+        {
+            new View.FrmGenerar().Show();
         }
     }
 }

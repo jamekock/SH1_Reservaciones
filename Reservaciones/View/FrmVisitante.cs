@@ -40,19 +40,25 @@ namespace Reservaciones.View
         }
 
 
-        private void BtnRegistrar_Click_1(object sender, EventArgs e)
+        private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            DocumentoTipo();
-            bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, telefonos, tipos);
-            if (rs)
+            if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumentoIdentidad.Text != "" && MyProperty != "" && telefonos != null && tipos != null)
             {
-                MessageBox.Show("Registro  insertado  correctamente");
+                DocumentoTipo();
+                bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, telefonos, tipos);
+                if (rs)
+                {
+                    MessageBox.Show("Registro  insertado  correctamente");
+                }
+                RestablecerControles();
+                Consultar();
             }
-            RestablecerControles();
-            Consultar();
+            else
+            {
+                MessageBox.Show("Debes llenar todos los campos");
+            }
         }
-
-        private void BtnEliminar_Click_1(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
             ObtenerId();
             DialogResult r =
@@ -71,7 +77,7 @@ namespace Reservaciones.View
             }
         }
 
-        private void BtnActualizar_Click_1(object sender, EventArgs e)
+        private void BtnActualizar_Click(object sender, EventArgs e)
         {
             ObtenerId();
             bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, txtApellido.Text, txtApellido.Text);
@@ -83,7 +89,7 @@ namespace Reservaciones.View
             RestablecerControles();
         }
 
-        private void BtnEnter_Click_1(object sender, EventArgs e)
+        private void BtnEnter_Click(object sender, EventArgs e)
         {
             TelefonoTipo();
             string telefono = cmbTelefono.Text;
@@ -96,7 +102,7 @@ namespace Reservaciones.View
             lbTipo.DataSource = tipos;
         }
 
-        private void BtnDel_Click_1(object sender, EventArgs e)
+        private void BtnDel_Click(object sender, EventArgs e)
         {
             TelefonoTipo();
             string telefono = cmbTelefono.Text;
@@ -130,8 +136,8 @@ namespace Reservaciones.View
             this.txtApellido.Clear();
             this.txtDocumentoIdentidad.Clear();
             this.cmbTelefono.Items.Clear();
-            //this.BtnEliminar.Enabled = false;
-            //this.BtnActualizar.Enabled = false;
+            this.BtnEliminar.Enabled = false;
+            this.BtnActualizar.Enabled = false;
         }
 
         private void ObtenerId()

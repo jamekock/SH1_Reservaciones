@@ -58,7 +58,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(892, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-//            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip1_ItemClicked);
             // 
             // tsmSystem
             // 
@@ -79,9 +78,9 @@
             // profesionalToolStripMenuItem
             // 
             this.profesionalToolStripMenuItem.Name = "profesionalToolStripMenuItem";
-            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.profesionalToolStripMenuItem.Text = "Profesional";
-//            this.profesionalToolStripMenuItem.Click += new System.EventHandler(this.ProfesionalToolStripMenuItem_Click);
+            this.profesionalToolStripMenuItem.Click += new System.EventHandler(this.ProfesionalToolStripMenuItem_Click);
             // 
             // visitanteToolStripMenuItem
             // 
@@ -101,13 +100,13 @@
             this.tsmCita.Name = "tsmCita";
             this.tsmCita.Size = new System.Drawing.Size(40, 20);
             this.tsmCita.Text = "Cita";
+            this.tsmCita.Click += new System.EventHandler(this.TsmCita_Click);
             // 
             // tsmReportes
             // 
             this.tsmReportes.Name = "tsmReportes";
             this.tsmReportes.Size = new System.Drawing.Size(65, 20);
             this.tsmReportes.Text = "Reportes";
-//            this.tsmReportes.Click += new System.EventHandler(this.TsmReportes_Click);
             // 
             // tsmHelp
             // 
@@ -125,12 +124,12 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Reservaciones.Properties.Resources.STOCKP;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(908, 640);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-           //this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // Principal
             // 
@@ -139,7 +138,7 @@
             this.Controls.Add(this.pictureBox1);
             this.MaximizeBox = false;
             this.Name = "Principal";
-            //this.Load += new System.EventHandler(this.Principal_Load);
+            this.Text = "Principal";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
