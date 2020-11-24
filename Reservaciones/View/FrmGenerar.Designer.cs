@@ -34,7 +34,7 @@
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DgvCita = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,21 +51,22 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvCita)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtConsulta
             // 
             this.txtConsulta.BackColor = System.Drawing.SystemColors.Control;
-            this.txtConsulta.Location = new System.Drawing.Point(199, 355);
+            this.txtConsulta.Location = new System.Drawing.Point(443, 132);
             this.txtConsulta.Name = "txtConsulta";
             this.txtConsulta.Size = new System.Drawing.Size(131, 20);
             this.txtConsulta.TabIndex = 0;
+            this.txtConsulta.TextChanged += new System.EventHandler(this.TxtConsulta_TextChanged);
             // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Location = new System.Drawing.Point(336, 353);
+            this.BtnBuscar.Location = new System.Drawing.Point(580, 132);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(48, 23);
             this.BtnBuscar.TabIndex = 1;
@@ -83,7 +84,7 @@
             // 
             // BtnLimpiar
             // 
-            this.BtnLimpiar.Location = new System.Drawing.Point(336, 382);
+            this.BtnLimpiar.Location = new System.Drawing.Point(634, 132);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(48, 23);
             this.BtnLimpiar.TabIndex = 4;
@@ -109,20 +110,20 @@
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
             // 
-            // dataGridView1
+            // DgvCita
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DgvCita.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvCita.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvCita.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvCita.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(199, 175);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(483, 150);
-            this.dataGridView1.TabIndex = 8;
+            this.DgvCita.Location = new System.Drawing.Point(199, 158);
+            this.DgvCita.Name = "DgvCita";
+            this.DgvCita.Size = new System.Drawing.Size(483, 150);
+            this.DgvCita.TabIndex = 8;
             // 
             // Column1
             // 
@@ -147,7 +148,7 @@
             // lblDocumento
             // 
             this.lblDocumento.AutoSize = true;
-            this.lblDocumento.Location = new System.Drawing.Point(197, 337);
+            this.lblDocumento.Location = new System.Drawing.Point(440, 116);
             this.lblDocumento.Name = "lblDocumento";
             this.lblDocumento.Size = new System.Drawing.Size(123, 13);
             this.lblDocumento.TabIndex = 10;
@@ -174,10 +175,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(576, 97);
+            this.label1.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(138, 122);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 38);
+            this.label1.Size = new System.Drawing.Size(156, 33);
             this.label1.TabIndex = 13;
             this.label1.Text = "Generar cita";
             // 
@@ -268,7 +269,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblDocumento);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DgvCita);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.BtnLimpiar);
@@ -281,7 +282,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmGenerar";
             this.Load += new System.EventHandler(this.FrmGenerar_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvCita)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -296,7 +297,7 @@
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgvCita;
         private System.Windows.Forms.Label lblDocumento;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblDescripcion;

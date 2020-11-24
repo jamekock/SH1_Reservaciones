@@ -13,8 +13,8 @@ namespace Reservaciones.View
 {
     public partial class FrmGenerar : Form
     {
-        DualDAO age = new DualDAO();
-
+        DAO.GenerarDAO age = new DAO.GenerarDAO();
+        DataTable data;
         public FrmGenerar()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace Reservaciones.View
         }
     
         private void BtnBuscar_Click(object sender, EventArgs e)
-        { 
+        {
             age.Filtrar(txtConsulta.Text);
             if (age.lastname != "")
             {
@@ -52,6 +52,11 @@ namespace Reservaciones.View
         private void FrmGenerar_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void TxtConsulta_TextChanged(object sender, EventArgs e)
+        {
+             
         }
     }
 }

@@ -1,37 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
 using MySql.Data.MySqlClient;
-using MySql.Data;
+using System.Data;
 using System.Windows.Forms;
-using System.Collections;
-
-namespace Reservaciones
+namespace Reservaciones.DAO
 {
-    class DualDAO
-    { 
-    
+    class GenerarDAO
+    {
         private DataTable table = null;
         private MySqlConnection cn = null;
         private MySqlDataReader reader = null;
         private MySqlCommand cmd = null;
-        public string name ="";
-        public string lastname="";
-        public bool Insertar(string dual,string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
+        public int id_visitante { get; set; }
+        public string name { get; set; }
+        public string lastname { get; set; }
+        /*id_profesional, id_cliente, id_dia, hora, fecha_cita*/
+        public bool Insertar(int id_profesional ,int id_dias,string hora , string motivo,string estado)
         {
             try
             {
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "INSERT INTO "+ dual +" (nombre, apellido, documento_identidad, documento_tipo) values ('" + nombre + "','" + apellido + "','" + documento + "','" + tipo + "');";
-                foreach (var item in telefonos.Zip(tipos, (a, b) => new { A = a, B = b }))
-                {
-                    cmd.CommandText += "INSERT INTO telefono_"+ dual +" (id_"+ dual +", telefono, tipo) values(last_insert_id(),'" + item.A + "','" + item.B + "');";
-                }
+                cmd.CommandText = "INSERT INTO generar (id_profesional,id_visitante,id_dias,hora,fecha,motivo,estado,created_at) values ('"+id_profesional+"',NOW())";
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;
@@ -51,7 +46,7 @@ namespace Reservaciones
         }
 
         //metodo para consultar
-        public DataTable Consultar(string dual)
+        public DataTable Consultar()
         {
             try
             {
@@ -59,7 +54,7 @@ namespace Reservaciones
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "select t1.id_"+dual+", t1.nombre, t1.apellido, t1.documento_identidad, t1.documento_tipo, t2.telefono, t2.tipo from "+dual+" as t1 inner join telefono_"+ dual +" as t2 on t1.id_"+dual+" = t2.id_"+dual+" ;";
+                cmd.CommandText = "";
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -86,14 +81,14 @@ namespace Reservaciones
             return table;
         }
 
-        public bool Eliminar(string dual,int id)
+        public bool Eliminar( int id)
         {
             try
             {
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "DELETE FROM " + dual + " where id_"+ dual +"='"+ id +"';";
+                cmd.CommandText = "DELETE FROM generar where id_generar = '" + id + "';";
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;
@@ -110,18 +105,19 @@ namespace Reservaciones
             return false;
         }
 
-        public bool Actualizar(string dual, int id, string nombre, string apellido, string documento, string tipo,List<string> telefonos,List<string>tipos)
+        /*id_profesional, id_cliente, id_dia, hora, fecha_cita*/
+        public bool Actualizar(int id, string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
         {
             try
             {
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "update " + dual + " set nombre = '"+nombre+"', apellido = '"+apellido +"',documento_identidad = '"+documento+"', documento_tipo='"+tipo+"' where id_"+dual+" = '"+id+"';";
-                cmd.CommandText += "delete from telefono_" + dual + " where id_" + dual + " = '" + id + "';";
+                cmd.CommandText ="";
+                cmd.CommandText +="";
                 foreach (var item in telefonos.Zip(tipos, (a, b) => new { A = a, B = b }))
                 {
-                    cmd.CommandText += "INSERT INTO telefono_" + dual + " (id_" + dual + ", telefono, tipo) values('" + id + "','" + item.A + "','" + item.B + "');";
+                    cmd.CommandText += "";
                 }
                 if (cmd.ExecuteNonQuery() > 0)
                 {
@@ -138,7 +134,7 @@ namespace Reservaciones
             }
             return false;
         }
-
+        /*id_profesional, id_cliente, id_dia, hora, fecha_cita*/
         private void Columnas()
         {
             table = new DataTable();
@@ -165,14 +161,16 @@ namespace Reservaciones
                 cn = Conexion.Conectar();
                 var cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "select nombre,apellido from visitante where documento_identidad = '" + documento + "';";
+                cmd.CommandText = "select id_visitante,nombre,apellido from visitante where documento_identidad = '" + documento + "';";
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    string nombre = reader.GetString(0);
-                    string apellido = reader.GetString(1);
+                    int id = reader.GetInt32(0);
+                    string nombre = reader.GetString(1);
+                    string apellido = reader.GetString(2);
                     if (nombre != "")
                     {
+                        this.id_visitante = id;
                         this.name = nombre;
                         this.lastname = apellido;
                     }
@@ -187,7 +185,7 @@ namespace Reservaciones
             {
                 cn.Close();
             }
- 
+
         }
     }
 }

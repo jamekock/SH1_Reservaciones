@@ -3,8 +3,9 @@
     "",
     "\\Reservaciones",
     "\\Reservaciones\\Properties",
-    "\\Reservaciones\\Resources"
+    "\\Reservaciones\\Resources",
+    "\\Reservaciones\\View"
   ],
-  "SelectedNode": "\\Reservaciones\\Properties\\Resources.Designer.cs",
+  "SelectedNode": "\\Reservaciones\\View\\FrmVisitante.cs",
   "PreviewInSolutionExplorer": false
 }

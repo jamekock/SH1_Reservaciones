@@ -78,7 +78,7 @@ namespace Reservaciones.View
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
             ObtenerId();
-            bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, txtApellido.Text, txtApellido.Text);
+            bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty,telefonos,tipos);
             if (rs)
             {
                 MessageBox.Show("Registro  Insertado  correctamente");
@@ -132,11 +132,24 @@ namespace Reservaciones.View
 
         public void RestablecerControles()
         {
+            this.lbTelefono.DataSource = null;
+            this.lbTipo.DataSource = null;
             this.txtNombre.Clear();
             this.txtApellido.Clear();
             this.txtDocumentoIdentidad.Clear();
+            this.cmbTelefono.Items.Clear();
+            this.cmbTelefono.Text = "";
+            this.cmbDocumentoTipo.Text = "";
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = false;
+        }
+        private void ObtenerDatos()
+        {
+            ObtenerId();
+            txtNombre.Text = Dgv_Visitante.CurrentRow.Cells[1].Value.ToString();
+            txtApellido.Text = Dgv_Visitante.CurrentRow.Cells[2].Value.ToString();
+            txtDocumentoIdentidad.Text = Dgv_Visitante.CurrentRow.Cells[3].Value.ToString();
+            cmbDocumentoTipo.Text = Dgv_Visitante.CurrentRow.Cells[4].Value.ToString();
         }
 
         private void Dgv_Visitante_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -147,6 +160,7 @@ namespace Reservaciones.View
         }
         private void Dgv_Visitante_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            ObtenerDatos();
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = true;
         }

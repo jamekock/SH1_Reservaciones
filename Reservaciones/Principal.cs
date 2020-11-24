@@ -34,7 +34,12 @@ namespace Reservaciones
 
         private void TsmCita_Click(object sender, EventArgs e)
         {
+        }
+
+        private void GenerarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             new View.FrmGenerar().Show();
+
         }
     }
 }

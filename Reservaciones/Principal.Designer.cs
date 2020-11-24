@@ -39,6 +39,8 @@
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.generarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -78,25 +80,28 @@
             // profesionalToolStripMenuItem
             // 
             this.profesionalToolStripMenuItem.Name = "profesionalToolStripMenuItem";
-            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.profesionalToolStripMenuItem.Text = "Profesional";
             this.profesionalToolStripMenuItem.Click += new System.EventHandler(this.ProfesionalToolStripMenuItem_Click);
             // 
             // visitanteToolStripMenuItem
             // 
             this.visitanteToolStripMenuItem.Name = "visitanteToolStripMenuItem";
-            this.visitanteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.visitanteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.visitanteToolStripMenuItem.Text = "Visitante";
             this.visitanteToolStripMenuItem.Click += new System.EventHandler(this.VisitanteToolStripMenuItem_Click);
             // 
             // disponibilidadToolStripMenuItem
             // 
             this.disponibilidadToolStripMenuItem.Name = "disponibilidadToolStripMenuItem";
-            this.disponibilidadToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.disponibilidadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.disponibilidadToolStripMenuItem.Text = "Disponibilidad";
             // 
             // tsmCita
             // 
+            this.tsmCita.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generarToolStripMenuItem,
+            this.consultarToolStripMenuItem});
             this.tsmCita.Name = "tsmCita";
             this.tsmCita.Size = new System.Drawing.Size(40, 20);
             this.tsmCita.Text = "Cita";
@@ -131,6 +136,19 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
+            // generarToolStripMenuItem
+            // 
+            this.generarToolStripMenuItem.Name = "generarToolStripMenuItem";
+            this.generarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.generarToolStripMenuItem.Text = "Generar";
+            this.generarToolStripMenuItem.Click += new System.EventHandler(this.GenerarToolStripMenuItem_Click);
+            // 
+            // consultarToolStripMenuItem
+            // 
+            this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
+            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.consultarToolStripMenuItem.Text = "Consultar";
+            // 
             // Principal
             // 
             this.ClientSize = new System.Drawing.Size(892, 601);
@@ -161,6 +179,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmExit;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem disponibilidadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem;
     }
 }
 

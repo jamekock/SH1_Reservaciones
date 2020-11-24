@@ -239,8 +239,8 @@
             this.Dgv_Visitante.Name = "Dgv_Visitante";
             this.Dgv_Visitante.Size = new System.Drawing.Size(495, 150);
             this.Dgv_Visitante.TabIndex = 33;
-            this.Dgv_Visitante.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Visitante_CellClick);
-            this.Dgv_Visitante.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Visitante_CellDoubleClick);
+            this.Dgv_Visitante.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Visitante_CellClick);
+            this.Dgv_Visitante.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Visitante_CellDoubleClick);
             // 
             // pictureBox2
             // 

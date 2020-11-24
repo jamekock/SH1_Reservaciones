@@ -14,12 +14,10 @@ namespace Reservaciones.View
     {
         private int id;
         public string dual = "visitante";
-        public string MyProperty { get; set; }
-        public string MyProperty2 { get; set; }
         public List<string> tipos = new List<string>();
         public List<string> telefonos = new List<string>();
-
-       
+        public string txtTelefonoTipo { get; set; }
+        public string txtDocumentoTipo { get; set; }
         DualDAO age = new DualDAO();
         private static DataTable table;
         public FrmVisitante()
@@ -33,6 +31,7 @@ namespace Reservaciones.View
             Dgv_Visitante.Columns["Id"].Visible = false;
             
         }
+        
 
         private void Consultar()
         {
@@ -42,10 +41,10 @@ namespace Reservaciones.View
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumentoIdentidad.Text != "" && MyProperty != "" && telefonos != null && tipos != null)
+            CmbText();
+            if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumentoIdentidad.Text != "" && txtDocumentoTipo != "" && telefonos != null && tipos != null)
             {
-                DocumentoTipo();
-                bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, telefonos, tipos);
+                bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, txtDocumentoTipo, telefonos, tipos);
                 if (rs)
                 {
                     MessageBox.Show("Registro  insertado  correctamente");
@@ -79,8 +78,9 @@ namespace Reservaciones.View
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
+            CmbText();
             ObtenerId();
-            bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, txtApellido.Text, txtApellido.Text);
+            bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, txtDocumentoTipo,telefonos,tipos);
             if (rs)
             {
                 MessageBox.Show("Registro  insertado  correctamente");
@@ -91,10 +91,10 @@ namespace Reservaciones.View
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
-            TelefonoTipo();
+            CmbText();
             string telefono = cmbTelefono.Text;
             telefonos.Add(telefono);
-            tipos.Add(MyProperty2);
+            tipos.Add(txtTelefonoTipo);
             cmbTelefono.Items.Add(cmbTelefono.Text);
             lbTelefono.DataSource = null;
             lbTelefono.DataSource = telefonos;
@@ -104,28 +104,15 @@ namespace Reservaciones.View
 
         private void BtnDel_Click(object sender, EventArgs e)
         {
-            TelefonoTipo();
+            CmbText();
             string telefono = cmbTelefono.Text;
             telefonos.Remove(telefono);
-            tipos.Remove(MyProperty2);
+            tipos.Remove(txtTelefonoTipo);
             cmbTelefono.Items.Remove(cmbTelefono.Text);
             lbTelefono.DataSource = null;
             lbTelefono.DataSource = telefonos;
             lbTipo.DataSource = null;
             lbTipo.DataSource = tipos;
-        }
-
-        private void DocumentoTipo()
-        {
-            if (cmbDocumentoTipo.SelectedIndex == 0) { MyProperty = "Cedula"; }
-            else { MyProperty = "Tipo"; }
-        }
-
-        private void TelefonoTipo()
-        {
-            if (cmbTelefonoTipo.SelectedIndex == 0) { MyProperty2 = "Celular"; }
-            else { MyProperty2 = "Fax"; }
-
         }
 
         public void RestablecerControles()
@@ -136,13 +123,16 @@ namespace Reservaciones.View
             this.txtApellido.Clear();
             this.txtDocumentoIdentidad.Clear();
             this.cmbTelefono.Items.Clear();
+            this.telefonos.Clear();
+            this.tipos.Clear();
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = false;
         }
 
         private void ObtenerId()
         {
-            id = Convert.ToInt32(Dgv_Visitante.Rows[Dgv_Visitante.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+            
+            id = Convert.ToInt32(Dgv_Visitante.CurrentRow.Cells[0].Value.ToString());
         }
         private void ObtenerDatos()
         {
@@ -150,6 +140,7 @@ namespace Reservaciones.View
             txtNombre.Text = Dgv_Visitante.CurrentRow.Cells[1].Value.ToString();
             txtApellido.Text = Dgv_Visitante.CurrentRow.Cells[2].Value.ToString();
             txtDocumentoIdentidad.Text = Dgv_Visitante.CurrentRow.Cells[3].Value.ToString();
+            cmbDocumentoTipo.Text = Dgv_Visitante.CurrentRow.Cells[4].Value.ToString();
         }
 
         private void Dgv_Visitante_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -163,6 +154,11 @@ namespace Reservaciones.View
             ObtenerDatos();
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = true;
+        }
+        private void CmbText()
+        {
+            txtDocumentoTipo = cmbDocumentoTipo.GetItemText(cmbDocumentoTipo.SelectedItem);
+            txtTelefonoTipo = cmbTelefonoTipo.GetItemText(cmbTelefonoTipo.SelectedItem);
         }
 
         private void LbTipo_SelectedIndexChanged(object sender, EventArgs e)
