@@ -7,30 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Reservaciones.View
 {
     public partial class FrmGenerar : Form
     {
-        public string nombre =" John ";
-        public string apellido = " Javier ";
+        DualDAO age = new DualDAO();
+
         public FrmGenerar()
         {
             InitializeComponent();
-            cmbDocumentoTipo.Items.Add("Cedula");
-            cmbDocumentoTipo.Items.Add("Pasaporte");
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
         }
-
+    
         private void BtnBuscar_Click(object sender, EventArgs e)
-        {
-            
-            if (txtConsulta.Text != "")
+        { 
+            age.Filtrar(txtConsulta.Text);
+            if (age.lastname != "")
             {
-                lblMessage.Text = "Nombre:"+ nombre + apellido ;  
+                txtNombre.Text = age.name;
+                txtApellido.Text = age.lastname;
             }
             else
             {
-                lblMessage.Text = "No se encuentra registrado";
+                MessageBox.Show("No se encuentra registrado");
                 new View.FrmVisitante().Show();
             }
         }
@@ -38,10 +40,16 @@ namespace Reservaciones.View
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtConsulta.Clear();
-            this.lblMessage.Text = "";
+            this.txtNombre.Clear();
+            this.txtApellido.Clear();
         }
 
         private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmGenerar_Load(object sender, EventArgs e)
         {
 
         }

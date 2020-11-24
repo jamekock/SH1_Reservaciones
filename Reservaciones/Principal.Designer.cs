@@ -78,7 +78,7 @@
             // profesionalToolStripMenuItem
             // 
             this.profesionalToolStripMenuItem.Name = "profesionalToolStripMenuItem";
-            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.profesionalToolStripMenuItem.Text = "Profesional";
             this.profesionalToolStripMenuItem.Click += new System.EventHandler(this.ProfesionalToolStripMenuItem_Click);
             // 
@@ -138,6 +138,7 @@
             this.Controls.Add(this.pictureBox1);
             this.MaximizeBox = false;
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

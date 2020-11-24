@@ -11,14 +11,15 @@ using System.Collections;
 
 namespace Reservaciones
 {
-    class CRUDDAO
+    class DualDAO
     { 
     
         private DataTable table = null;
         private MySqlConnection cn = null;
         private MySqlDataReader reader = null;
         private MySqlCommand cmd = null;
-
+        public string name ="";
+        public string lastname="";
         public bool Insertar(string dual,string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
         {
             try
@@ -107,7 +108,6 @@ namespace Reservaciones
                 Cerrar();
             }
             return false;
-
         }
  
         public bool Actualizar(string dual,int id, string nombre, string apellido, string documento, string tipo, string telefono, string telefono_tipo)
@@ -151,6 +151,26 @@ namespace Reservaciones
             {
                 cn.Close();
             }
+        }
+
+        public void Filtrar(string documento)
+        {
+            cn = Conexion.Conectar();
+            var cmd = cn.CreateCommand();
+            cn.Open();
+            cmd.CommandText = "select nombre,apellido from visitante where documento_identidad = '" + documento + "';";
+            var reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                string nombre = reader.GetString(0);
+                string apellido = reader.GetString(1);
+                if (nombre != "")
+                {
+                    this.name = nombre;
+                    this.lastname = apellido;
+                }
+            }
+            cn.Close();
         }
     }
 }

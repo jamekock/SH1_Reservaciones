@@ -20,7 +20,7 @@ namespace Reservaciones.View
         public List<string> telefonos = new List<string>();
 
        
-        CRUDDAO age = new CRUDDAO();
+        DualDAO age = new DualDAO();
         private static DataTable table;
         public FrmVisitante()
         {
@@ -144,6 +144,13 @@ namespace Reservaciones.View
         {
             id = Convert.ToInt32(Dgv_Visitante.Rows[Dgv_Visitante.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
         }
+        private void ObtenerDatos()
+        {
+            ObtenerId();
+            txtNombre.Text = Dgv_Visitante.CurrentRow.Cells[1].Value.ToString();
+            txtApellido.Text = Dgv_Visitante.CurrentRow.Cells[2].Value.ToString();
+            txtDocumentoIdentidad.Text = Dgv_Visitante.CurrentRow.Cells[3].Value.ToString();
+        }
 
         private void Dgv_Visitante_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -153,6 +160,7 @@ namespace Reservaciones.View
         }
         private void Dgv_Visitante_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            ObtenerDatos();
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = true;
         }

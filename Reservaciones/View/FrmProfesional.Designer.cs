@@ -281,6 +281,7 @@
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.pictureBox2);
             this.Name = "FrmProfesional";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmProfesional";
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Visitante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

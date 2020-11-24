@@ -290,6 +290,7 @@
             this.Controls.Add(this.pictureBox2);
             this.MaximizeBox = false;
             this.Name = "FrmVisitante";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmVisitante";
             this.Load += new System.EventHandler(this.FrmVisitante_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Visitante)).EndInit();

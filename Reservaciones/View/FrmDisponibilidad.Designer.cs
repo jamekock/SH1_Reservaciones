@@ -36,6 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 601);
             this.Name = "FrmDisponibilidad";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDisponibilidad";
             this.Load += new System.EventHandler(this.FrmDisponibilidad_Load);
             this.ResumeLayout(false);

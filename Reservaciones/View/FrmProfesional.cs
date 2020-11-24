@@ -16,7 +16,7 @@ namespace Reservaciones.View
         public List<string> tipos = new List<string>();
         public string dual = "profesional";
         private int id;
-        CRUDDAO age = new CRUDDAO();
+        DualDAO age = new DualDAO();
         private static DataTable table;
         public FrmProfesional()
         {
