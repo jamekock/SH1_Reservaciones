@@ -14,18 +14,20 @@ namespace Reservaciones.View
     public partial class FrmGenerar : Form
     {
         DAO.GenerarDAO age = new DAO.GenerarDAO();
-        DataTable data;
+        private DataTable table;
         public FrmGenerar()
         {
             InitializeComponent();
             txtNombre.Enabled = false;
             txtApellido.Enabled = false;
+            Consultar();
         }
     
+        
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             age.Filtrar(txtConsulta.Text);
-            if (age.lastname != "")
+            if (age.name != "")
             {
                 txtNombre.Text = age.name;
                 txtApellido.Text = age.lastname;
@@ -44,19 +46,9 @@ namespace Reservaciones.View
             this.txtApellido.Clear();
         }
 
-        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        private void Consultar()
         {
-
-        }
-
-        private void FrmGenerar_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtConsulta_TextChanged(object sender, EventArgs e)
-        {
-             
+            DgvCita.DataSource = table = age.Consultar();
         }
     }
 }

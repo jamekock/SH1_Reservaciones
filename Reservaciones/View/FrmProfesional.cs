@@ -14,6 +14,8 @@ namespace Reservaciones.View
     {
         public List<string> telefonos = new List<string>();
         public List<string> tipos = new List<string>();
+        public string txtTelefonoTipo { get; set; }
+        public string txtDocumentoTipo { get; set; }
         public string dual = "profesional";
         private int id;
         DualDAO age = new DualDAO();
@@ -28,8 +30,6 @@ namespace Reservaciones.View
             Consultar();
             Dgv_Visitante.Columns["Id"].Visible = false;
         }
-        public string MyProperty { get; set; }
-        public string MyProperty2 { get; set; }
 
         private void Consultar()
         {
@@ -39,10 +39,10 @@ namespace Reservaciones.View
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumentoIdentidad.Text != "" && MyProperty != "" && telefonos != null && tipos != null)
+            CmbText();
+            if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumentoIdentidad.Text != "" && txtDocumentoTipo != "" && telefonos != null && tipos != null)
             {
-                DocumentoTipo();
-                bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty, telefonos, tipos);
+                bool rs = age.Insertar(dual, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, txtDocumentoTipo, telefonos, tipos);
                 if (rs)
                 {
                     MessageBox.Show("Registro  insertado  correctamente");
@@ -77,11 +77,12 @@ namespace Reservaciones.View
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
+            CmbText();
             ObtenerId();
-            bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, MyProperty,telefonos,tipos);
+            bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, txtDocumentoTipo, telefonos, tipos);
             if (rs)
             {
-                MessageBox.Show("Registro  Insertado  correctamente");
+                MessageBox.Show("Registro  insertado  correctamente");
                 Consultar();
             }
             RestablecerControles();
@@ -89,10 +90,10 @@ namespace Reservaciones.View
 
         private void BtnEnter_Click_1(object sender, EventArgs e)
         {
-            TelefonoTipo();
+            CmbText();
             string telefono = cmbTelefono.Text;
             telefonos.Add(telefono);
-            tipos.Add(MyProperty2);
+            tipos.Add(txtTelefonoTipo);
             cmbTelefono.Items.Add(cmbTelefono.Text);
             lbTelefono.DataSource = null;
             lbTelefono.DataSource = telefonos;
@@ -102,10 +103,10 @@ namespace Reservaciones.View
 
         private void BtnDel_Click_1(object sender, EventArgs e)
         {
-            TelefonoTipo();
+            CmbText();
             string telefono = cmbTelefono.Text;
             telefonos.Remove(telefono);
-            tipos.Remove(MyProperty2);
+            tipos.Remove(txtTelefonoTipo);
             cmbTelefono.Items.Remove(cmbTelefono.Text);
             lbTelefono.DataSource = null;
             lbTelefono.DataSource = telefonos;
@@ -113,18 +114,6 @@ namespace Reservaciones.View
             lbTipo.DataSource = tipos;
         }
 
-        public void DocumentoTipo()
-        {
-            if (cmbDocumentoTipo.SelectedIndex == 0) { MyProperty = "Cedula"; }
-            else { MyProperty = "Tipo"; }
-        }
-
-        public void TelefonoTipo()
-        {
-            if (cmbTelefonoTipo.SelectedIndex == 0) { MyProperty2 = "Celular"; }
-            else { MyProperty2 = "Fax"; }
-
-        }
         private void ObtenerId()
         {
             id = Convert.ToInt32(Dgv_Visitante.Rows[Dgv_Visitante.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
@@ -164,7 +153,11 @@ namespace Reservaciones.View
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = true;
         }
-
+        private void CmbText()
+        {
+            txtDocumentoTipo = cmbDocumentoTipo.GetItemText(cmbDocumentoTipo.SelectedItem);
+            txtTelefonoTipo = cmbTelefonoTipo.GetItemText(cmbTelefonoTipo.SelectedItem);
+        }
         private void TxtNombre_TextChanged(object sender, EventArgs e)
         {
 

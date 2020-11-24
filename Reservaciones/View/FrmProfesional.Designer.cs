@@ -84,6 +84,7 @@
             this.BtnEliminar.TabIndex = 55;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnActualizar
             // 
@@ -93,6 +94,7 @@
             this.BtnActualizar.TabIndex = 54;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = false;
+            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
             // 
             // BtnRegistrar
             // 
@@ -102,6 +104,7 @@
             this.BtnRegistrar.TabIndex = 53;
             this.BtnRegistrar.Text = "Registrar";
             this.BtnRegistrar.UseVisualStyleBackColor = false;
+            this.BtnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
             // 
             // BtnEnter
             // 
@@ -111,6 +114,7 @@
             this.BtnEnter.TabIndex = 52;
             this.BtnEnter.Text = "Enter";
             this.BtnEnter.UseVisualStyleBackColor = false;
+            this.BtnEnter.Click += new System.EventHandler(this.BtnEnter_Click_1);
             // 
             // BtnDel
             // 
@@ -121,6 +125,7 @@
             this.BtnDel.TabIndex = 51;
             this.BtnDel.Text = "Del";
             this.BtnDel.UseVisualStyleBackColor = false;
+            this.BtnDel.Click += new System.EventHandler(this.BtnDel_Click_1);
             // 
             // txtDocumentoIdentidad
             // 

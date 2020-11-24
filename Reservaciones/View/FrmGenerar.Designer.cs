@@ -45,9 +45,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BtnRegistrar = new System.Windows.Forms.Button();
+            this.BtnActualizar = new System.Windows.Forms.Button();
+            this.BtnEliminar = new System.Windows.Forms.Button();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
@@ -62,7 +62,6 @@
             this.txtConsulta.Name = "txtConsulta";
             this.txtConsulta.Size = new System.Drawing.Size(131, 20);
             this.txtConsulta.TabIndex = 0;
-            this.txtConsulta.TextChanged += new System.EventHandler(this.TxtConsulta_TextChanged);
             // 
             // BtnBuscar
             // 
@@ -108,7 +107,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(252, 41);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
             // 
             // DgvCita
             // 
@@ -176,7 +174,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(138, 122);
+            this.label1.Location = new System.Drawing.Point(139, 116);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 33);
             this.label1.TabIndex = 13;
@@ -199,32 +197,32 @@
             this.txtNombre.Size = new System.Drawing.Size(123, 20);
             this.txtNombre.TabIndex = 15;
             // 
-            // button1
+            // BtnRegistrar
             // 
-            this.button1.Location = new System.Drawing.Point(182, 449);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Registrar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnRegistrar.Location = new System.Drawing.Point(182, 449);
+            this.BtnRegistrar.Name = "BtnRegistrar";
+            this.BtnRegistrar.Size = new System.Drawing.Size(59, 23);
+            this.BtnRegistrar.TabIndex = 16;
+            this.BtnRegistrar.Text = "Registrar";
+            this.BtnRegistrar.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // BtnActualizar
             // 
-            this.button2.Location = new System.Drawing.Point(316, 449);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(68, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Actualizar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BtnActualizar.Location = new System.Drawing.Point(316, 449);
+            this.BtnActualizar.Name = "BtnActualizar";
+            this.BtnActualizar.Size = new System.Drawing.Size(68, 23);
+            this.BtnActualizar.TabIndex = 17;
+            this.BtnActualizar.Text = "Actualizar";
+            this.BtnActualizar.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // BtnEliminar
             // 
-            this.button3.Location = new System.Drawing.Point(247, 449);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(63, 23);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BtnEliminar.Location = new System.Drawing.Point(247, 449);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(63, 23);
+            this.BtnEliminar.TabIndex = 18;
+            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.UseVisualStyleBackColor = true;
             // 
             // lblNombre
             // 
@@ -261,9 +259,9 @@
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnEliminar);
+            this.Controls.Add(this.BtnActualizar);
+            this.Controls.Add(this.BtnRegistrar);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDescripcion);
@@ -281,7 +279,6 @@
             this.Name = "FrmGenerar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmGenerar";
-            this.Load += new System.EventHandler(this.FrmGenerar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvCita)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -308,9 +305,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtnRegistrar;
+        private System.Windows.Forms.Button BtnActualizar;
+        private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label lblApellido;

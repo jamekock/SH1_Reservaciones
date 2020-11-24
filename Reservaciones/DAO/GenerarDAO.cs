@@ -16,17 +16,17 @@ namespace Reservaciones.DAO
         private MySqlDataReader reader = null;
         private MySqlCommand cmd = null;
         public int id_visitante { get; set; }
-        public string name { get; set; }
-        public string lastname { get; set; }
-        /*id_profesional, id_cliente, id_dia, hora, fecha_cita*/
-        public bool Insertar(int id_profesional ,int id_dias,string hora , string motivo,string estado)
+        public string name = "";
+        public string lastname = "";
+        // id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at/
+        public bool Insertar(int id_profesional ,int id_dias , string motivo,string estado)
         {
             try
             {
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "INSERT INTO generar (id_profesional,id_visitante,id_dias,hora,fecha,motivo,estado,created_at) values ('"+id_profesional+"',NOW())";
+                cmd.CommandText = "INSERT INTO generar (id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at) values ('" + id_profesional + "','" + id_visitante + "','" + id_dias + "','" + motivo + "','" + estado + "',NOW())";
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;
@@ -45,7 +45,7 @@ namespace Reservaciones.DAO
             return false;
         }
 
-        //metodo para consultar
+        //id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at
         public DataTable Consultar()
         {
             try
@@ -54,18 +54,18 @@ namespace Reservaciones.DAO
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "";
+                cmd.CommandText = "select id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at from generar";
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int id = reader.GetInt32(0);
-                    String nombre = reader.GetString(1);
-                    String apellido = reader.GetString(2);
-                    String documento_identidad = reader.GetString(3);
-                    String documento_tipo = reader.GetString(4);
-                    String telefono = reader.GetString(5);
-                    String telefono_tipo = reader.GetString(6);
-                    table.Rows.Add(id, nombre, apellido, documento_identidad, documento_tipo, telefono, telefono_tipo);
+                    int id_profesional = reader.GetInt32(0);
+                    int id_visitante = reader.GetInt32(1);
+                    int id_dias = reader.GetInt32(2);
+                    string fecha = reader.GetString(3);
+                    string motivo = reader.GetString(4);
+                    string estado = reader.GetString(5);
+                    DateTime created_at = reader.GetDateTime(6);
+                    table.Rows.Add(id_profesional, id_visitante, id_dias ,fecha, motivo, estado, created_at);
                 }
             }
             catch (Exception e)
@@ -105,7 +105,7 @@ namespace Reservaciones.DAO
             return false;
         }
 
-        /*id_profesional, id_cliente, id_dia, hora, fecha_cita*/
+        /*id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at*/
         public bool Actualizar(int id, string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
         {
             try
@@ -134,17 +134,17 @@ namespace Reservaciones.DAO
             }
             return false;
         }
-        /*id_profesional, id_cliente, id_dia, hora, fecha_cita*/
+        /*id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at*/
         private void Columnas()
         {
             table = new DataTable();
-            table.Columns.Add("Id");
-            table.Columns.Add("Nombre");
-            table.Columns.Add("Apellido");
-            table.Columns.Add("Documento");
-            table.Columns.Add("Tipo");
-            table.Columns.Add("telefono");
-            table.Columns.Add("telefono_tipo");
+            table.Columns.Add("Id_profesional");
+            table.Columns.Add("Id_visitante");
+            table.Columns.Add("Id_dias");
+            table.Columns.Add("Fecha");
+            table.Columns.Add("Motivo");
+            table.Columns.Add("Estado");
+            table.Columns.Add("Created_at");
         }
         private void Cerrar()
         {
