@@ -15,11 +15,14 @@ namespace Reservaciones
     { 
     
         private DataTable table = null;
+        private DataTable tabla = null;
         private MySqlConnection cn = null;
         private MySqlDataReader reader = null;
         private MySqlCommand cmd = null;
-        public string name ="";
-        public string lastname="";
+        public List<string> tipos = new List<string>();
+        public List<string> telefonos = new List<string>();
+        List<string> objetos = new List<string>();
+
         public bool Insertar(string dual,string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
         {
             try
@@ -138,6 +141,25 @@ namespace Reservaciones
             }
             return false;
         }
+        public void GetTelefonos(string dual,int id)
+        {
+            cn = Conexion.Conectar();
+            cmd = cn.CreateCommand();
+            cn.Open();
+            cmd.CommandText = "select * from telefono_" + dual + " where id_"+dual+"= '"+id+"' ";
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                String telefono = reader.GetString(1);
+                String telefono_tipo = reader.GetString(2);
+                if(telefono!= "")
+                {
+                    this.telefonos.Add(telefono);
+                    this.tipos.Add(telefono_tipo);
+                }
+            }
+            Cerrar();
+        }
 
         private void Columnas()
         {
@@ -158,24 +180,23 @@ namespace Reservaciones
             }
         }
 
-        public void Filtrar(string documento)
+        public DataTable GetConsulta()
         {
             try
             {
                 cn = Conexion.Conectar();
                 var cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "select nombre,apellido from visitante where documento_identidad = '" + documento + "';";
+                cmd.CommandText = "select distinct * from profesional";
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    string nombre = reader.GetString(0);
-                    string apellido = reader.GetString(1);
-                    if (nombre != "")
-                    {
-                        this.name = nombre;
-                        this.lastname = apellido;
-                    }
+                    int id_profesional = reader.GetInt32(0);
+                    string nombre = reader.GetString(1);
+                    string apellido = reader.GetString(2);
+                    string documento_identidad = reader.GetString(3);
+                    string documento_tipo = reader.GetString(4);
+                    tabla.Rows.Add(id_profesional, nombre, apellido, documento_identidad, documento_tipo);
                 }
             }
             catch (Exception)
@@ -187,7 +208,7 @@ namespace Reservaciones
             {
                 cn.Close();
             }
- 
+            return tabla;
         }
     }
 }

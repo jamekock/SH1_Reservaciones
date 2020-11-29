@@ -15,18 +15,15 @@ namespace Reservaciones.DAO
         private MySqlConnection cn = null;
         private MySqlDataReader reader = null;
         private MySqlCommand cmd = null;
-        public int id_visitante { get; set; }
-        public string name = "";
-        public string lastname = "";
-        // id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at/
-        public bool Insertar(int id_profesional ,int id_dias , string motivo,string estado)
+        public List<string> namepro = new List<string>();
+        public bool Insertar(int id_profesional ,int id_visitante ,int id_dias ,string fecha, string motivo,int estado)
         {
             try
             {
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "INSERT INTO generar (id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at) values ('" + id_profesional + "','" + id_visitante + "','" + id_dias + "','" + motivo + "','" + estado + "',NOW())";
+                cmd.CommandText = "INSERT INTO generar (id_profesional,id_visitante,id_dias,fecha,motivo,id_estado,created_at) values('" + id_profesional + "','" + id_visitante + "','" + id_dias + "','" + fecha + "','" + motivo + "','" + estado + "',NOW())";
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;
@@ -45,7 +42,6 @@ namespace Reservaciones.DAO
             return false;
         }
 
-        //id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at
         public DataTable Consultar()
         {
             try
@@ -54,18 +50,19 @@ namespace Reservaciones.DAO
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "select id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at from generar";
+                cmd.CommandText = "select id_generar,id_profesional,id_visitante,id_dias,fecha,motivo,id_estado,created_at from generar";
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int id_profesional = reader.GetInt32(0);
-                    int id_visitante = reader.GetInt32(1);
-                    int id_dias = reader.GetInt32(2);
-                    string fecha = reader.GetString(3);
-                    string motivo = reader.GetString(4);
-                    string estado = reader.GetString(5);
-                    DateTime created_at = reader.GetDateTime(6);
-                    table.Rows.Add(id_profesional, id_visitante, id_dias ,fecha, motivo, estado, created_at);
+                    int id_generar = reader.GetInt32(0);
+                    int id_profesional = reader.GetInt32(1);
+                    int id_visitante = reader.GetInt32(2);
+                    int id_dias = reader.GetInt32(3);
+                    string fecha = reader.GetString(4);
+                    string motivo = reader.GetString(5);
+                    int id_estado = reader.GetInt32(6);
+                    DateTime created_at = reader.GetDateTime(7);
+                    table.Rows.Add(id_generar,id_profesional, id_visitante,id_dias,fecha, motivo, id_estado, created_at);
                 }
             }
             catch (Exception e)
@@ -81,7 +78,7 @@ namespace Reservaciones.DAO
             return table;
         }
 
-        public bool Eliminar( int id)
+        public bool Eliminar(int id)
         {
             try
             {
@@ -106,19 +103,14 @@ namespace Reservaciones.DAO
         }
 
         /*id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at*/
-        public bool Actualizar(int id, string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
+        public bool Actualizar(int id,int id_dias,string fecha,string motivo)
         {
             try
             {
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText ="";
-                cmd.CommandText +="";
-                foreach (var item in telefonos.Zip(tipos, (a, b) => new { A = a, B = b }))
-                {
-                    cmd.CommandText += "";
-                }
+                cmd.CommandText = "UPDATE generar set  id_dias = '" + id_dias + "', fecha = '" + fecha + "', motivo = '" + motivo + "' where id_generar = '" + id + "';";
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;
@@ -134,16 +126,17 @@ namespace Reservaciones.DAO
             }
             return false;
         }
-        /*id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at*/
+        
         private void Columnas()
         {
             table = new DataTable();
+            table.Columns.Add("Id_generar");
             table.Columns.Add("Id_profesional");
             table.Columns.Add("Id_visitante");
             table.Columns.Add("Id_dias");
             table.Columns.Add("Fecha");
             table.Columns.Add("Motivo");
-            table.Columns.Add("Estado");
+            table.Columns.Add("Id_estado");
             table.Columns.Add("Created_at");
         }
         private void Cerrar()
@@ -154,38 +147,31 @@ namespace Reservaciones.DAO
             }
         }
 
-        public void Filtrar(string documento)
+
+        public bool SetGenerar(int estado,int id)
         {
             try
             {
                 cn = Conexion.Conectar();
-                var cmd = cn.CreateCommand();
+                cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "select id_visitante,nombre,apellido from visitante where documento_identidad = '" + documento + "';";
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
+                cmd.CommandText = "UPDATE generar set id_estado = '"+estado+"' where id_visitante='"+ id+"'";
+                if (cmd.ExecuteNonQuery() > 0)
                 {
-                    int id = reader.GetInt32(0);
-                    string nombre = reader.GetString(1);
-                    string apellido = reader.GetString(2);
-                    if (nombre != "")
-                    {
-                        this.id_visitante = id;
-                        this.name = nombre;
-                        this.lastname = apellido;
-                    }
+                    return true; 
                 }
-            }
-            catch (Exception)
-            {
 
-                throw;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                MessageBox.Show(e.StackTrace);
             }
             finally
             {
-                cn.Close();
+                Cerrar();
             }
-
+            return false;
         }
     }
 }

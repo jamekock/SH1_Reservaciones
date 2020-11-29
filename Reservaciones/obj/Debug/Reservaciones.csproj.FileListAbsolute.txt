@@ -37,3 +37,5 @@ C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.V
 C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmProfesional.resources
 C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmVisitante.resources
 C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmGenerar.resources
+C:\Users\John\source\repos\Reservaciones\Reservaciones\obj\Debug\Reservaciones.View.FrmConsulta.resources
+C:\Users\John\source\repos\Reservaciones\Reservaciones\bin\Debug\MonthCalendar.dll

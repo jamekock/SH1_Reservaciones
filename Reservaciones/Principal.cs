@@ -41,5 +41,15 @@ namespace Reservaciones
             new View.FrmGenerar().Show();
 
         }
+
+        private void DisponibilidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new View.FrmDisponibilidad().Show();
+        }
+
+        private void ConsultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new View.FrmConsulta().Show();
+        }
     }
 }

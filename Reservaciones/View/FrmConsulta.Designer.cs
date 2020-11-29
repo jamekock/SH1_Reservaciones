@@ -1,0 +1,142 @@
+﻿namespace Reservaciones.View
+{
+    partial class FrmConsulta
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.txtConsulta = new System.Windows.Forms.TextBox();
+            this.DgvConsulta = new System.Windows.Forms.DataGridView();
+            this.DgvEstado = new System.Windows.Forms.DataGridView();
+            this.txtIdEstado = new System.Windows.Forms.TextBox();
+            this.BtnActualizar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvEstado)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // BtnBuscar
+            // 
+            this.BtnBuscar.Location = new System.Drawing.Point(665, 158);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(52, 23);
+            this.BtnBuscar.TabIndex = 1;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            // 
+            // BtnLimpiar
+            // 
+            this.BtnLimpiar.Location = new System.Drawing.Point(665, 186);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(52, 23);
+            this.BtnLimpiar.TabIndex = 2;
+            this.BtnLimpiar.Text = "Limpiar";
+            this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+            // 
+            // txtConsulta
+            // 
+            this.txtConsulta.Location = new System.Drawing.Point(559, 160);
+            this.txtConsulta.Name = "txtConsulta";
+            this.txtConsulta.Size = new System.Drawing.Size(100, 20);
+            this.txtConsulta.TabIndex = 4;
+            // 
+            // DgvConsulta
+            // 
+            this.DgvConsulta.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvConsulta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvConsulta.Location = new System.Drawing.Point(214, 186);
+            this.DgvConsulta.Name = "DgvConsulta";
+            this.DgvConsulta.Size = new System.Drawing.Size(445, 159);
+            this.DgvConsulta.TabIndex = 5;
+            this.DgvConsulta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsulta_CellDoubleClick);
+            // 
+            // DgvEstado
+            // 
+            this.DgvEstado.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvEstado.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvEstado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvEstado.Location = new System.Drawing.Point(214, 370);
+            this.DgvEstado.Name = "DgvEstado";
+            this.DgvEstado.Size = new System.Drawing.Size(144, 112);
+            this.DgvEstado.TabIndex = 6;
+            this.DgvEstado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvEstado_CellClick);
+            // 
+            // txtIdEstado
+            // 
+            this.txtIdEstado.Location = new System.Drawing.Point(364, 370);
+            this.txtIdEstado.Name = "txtIdEstado";
+            this.txtIdEstado.Size = new System.Drawing.Size(28, 20);
+            this.txtIdEstado.TabIndex = 7;
+            // 
+            // BtnActualizar
+            // 
+            this.BtnActualizar.Location = new System.Drawing.Point(364, 396);
+            this.BtnActualizar.Name = "BtnActualizar";
+            this.BtnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.BtnActualizar.TabIndex = 8;
+            this.BtnActualizar.Text = "Actualizar";
+            this.BtnActualizar.UseVisualStyleBackColor = true;
+            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
+            // 
+            // FrmConsulta
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Reservaciones.Properties.Resources.STOCK;
+            this.ClientSize = new System.Drawing.Size(892, 601);
+            this.Controls.Add(this.BtnActualizar);
+            this.Controls.Add(this.txtIdEstado);
+            this.Controls.Add(this.DgvEstado);
+            this.Controls.Add(this.DgvConsulta);
+            this.Controls.Add(this.txtConsulta);
+            this.Controls.Add(this.BtnLimpiar);
+            this.Controls.Add(this.BtnBuscar);
+            this.MaximizeBox = false;
+            this.Name = "FrmConsulta";
+            this.Text = "FrmConsulta";
+            this.Load += new System.EventHandler(this.FrmConsulta_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvEstado)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.TextBox txtConsulta;
+        private System.Windows.Forms.DataGridView DgvConsulta;
+        private System.Windows.Forms.DataGridView DgvEstado;
+        private System.Windows.Forms.TextBox txtIdEstado;
+        private System.Windows.Forms.Button BtnActualizar;
+    }
+}

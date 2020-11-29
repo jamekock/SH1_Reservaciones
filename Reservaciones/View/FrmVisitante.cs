@@ -80,13 +80,20 @@ namespace Reservaciones.View
         {
             CmbText();
             ObtenerId();
-            bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, txtDocumentoTipo,telefonos,tipos);
-            if (rs)
+            DialogResult r =
+            MessageBox.Show("Actualizar",
+            "Esta seguro que desea  Actualizar este registro? ",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            if (r == DialogResult.OK)
             {
-                MessageBox.Show("Registro  insertado  correctamente");
-                Consultar();
+                bool rs = age.Actualizar(dual, id, txtNombre.Text, txtApellido.Text, txtDocumentoIdentidad.Text, txtDocumentoTipo, telefonos, tipos);
+                if (rs)
+                {
+                    MessageBox.Show("Registro Actualizado Correctamente");
+                    Consultar();
+                }
+                RestablecerControles();
             }
-            RestablecerControles();
         }
 
         private void BtnEnter_Click(object sender, EventArgs e)
@@ -141,6 +148,9 @@ namespace Reservaciones.View
             txtApellido.Text = Dgv_Visitante.CurrentRow.Cells[2].Value.ToString();
             txtDocumentoIdentidad.Text = Dgv_Visitante.CurrentRow.Cells[3].Value.ToString();
             cmbDocumentoTipo.Text = Dgv_Visitante.CurrentRow.Cells[4].Value.ToString();
+            age.GetTelefonos(dual,id);
+            tipos = age.tipos;
+            telefonos = age.telefonos;
         }
 
         private void Dgv_Visitante_CellClick(object sender, DataGridViewCellEventArgs e)
