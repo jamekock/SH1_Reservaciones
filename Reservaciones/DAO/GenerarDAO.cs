@@ -50,19 +50,20 @@ namespace Reservaciones.DAO
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "select id_generar,id_profesional,id_visitante,id_dias,fecha,motivo,id_estado,created_at from generar";
+                cmd.CommandText = "generar_cita";
+                cmd.CommandType = CommandType.StoredProcedure;
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     int id_generar = reader.GetInt32(0);
-                    int id_profesional = reader.GetInt32(1);
-                    int id_visitante = reader.GetInt32(2);
-                    int id_dias = reader.GetInt32(3);
+                    string profesional = reader.GetString(1);
+                    string visitante = reader.GetString(2);
+                    string dia = reader.GetString(3);
                     string fecha = reader.GetString(4);
                     string motivo = reader.GetString(5);
-                    int id_estado = reader.GetInt32(6);
+                    string estado = reader.GetString(6);
                     DateTime created_at = reader.GetDateTime(7);
-                    table.Rows.Add(id_generar,id_profesional, id_visitante,id_dias,fecha, motivo, id_estado, created_at);
+                    table.Rows.Add(id_generar,profesional, visitante,dia,fecha, motivo,estado, created_at);
                 }
             }
             catch (Exception e)
@@ -102,7 +103,7 @@ namespace Reservaciones.DAO
             return false;
         }
 
-        /*id_profesional,id_visitante,id_dias,fecha,motivo,estado,created_at*/
+        /*id_profesional ,id_visitante ,id_dias ,fecha,motivo,estado,created_at*/
         public bool Actualizar(int id,int id_dias,string fecha,string motivo)
         {
             try
@@ -131,13 +132,13 @@ namespace Reservaciones.DAO
         {
             table = new DataTable();
             table.Columns.Add("Id_generar");
-            table.Columns.Add("Id_profesional");
-            table.Columns.Add("Id_visitante");
-            table.Columns.Add("Id_dias");
+            table.Columns.Add("Profesional");
+            table.Columns.Add("Visitante");
+            table.Columns.Add("Dia");
             table.Columns.Add("Fecha");
             table.Columns.Add("Motivo");
-            table.Columns.Add("Id_estado");
-            table.Columns.Add("Created_at");
+            table.Columns.Add("Estado");
+            table.Columns.Add("Creado En");
         }
         private void Cerrar()
         {

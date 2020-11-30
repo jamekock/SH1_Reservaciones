@@ -35,8 +35,12 @@
             this.DgvEstado = new System.Windows.Forms.DataGridView();
             this.txtIdEstado = new System.Windows.Forms.TextBox();
             this.BtnActualizar = new System.Windows.Forms.Button();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvConsulta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvEstado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnBuscar
@@ -46,7 +50,7 @@
             this.BtnBuscar.Size = new System.Drawing.Size(52, 23);
             this.BtnBuscar.TabIndex = 1;
             this.BtnBuscar.Text = "Buscar";
-            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
             this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // BtnLimpiar
@@ -56,11 +60,12 @@
             this.BtnLimpiar.Size = new System.Drawing.Size(52, 23);
             this.BtnLimpiar.TabIndex = 2;
             this.BtnLimpiar.Text = "Limpiar";
-            this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.UseVisualStyleBackColor = false;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // txtConsulta
             // 
+            this.txtConsulta.BackColor = System.Drawing.SystemColors.Control;
             this.txtConsulta.Location = new System.Drawing.Point(559, 160);
             this.txtConsulta.Name = "txtConsulta";
             this.txtConsulta.Size = new System.Drawing.Size(100, 20);
@@ -102,15 +107,44 @@
             this.BtnActualizar.Size = new System.Drawing.Size(75, 23);
             this.BtnActualizar.TabIndex = 8;
             this.BtnActualizar.Text = "Actualizar";
-            this.BtnActualizar.UseVisualStyleBackColor = true;
+            this.BtnActualizar.UseVisualStyleBackColor = false;
             this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Location = new System.Drawing.Point(211, 354);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(40, 13);
+            this.lblEstado.TabIndex = 9;
+            this.lblEstado.Text = "Estado";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(157, 118);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 33);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Consulta";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Reservaciones.Properties.Resources.STOCK;
+            this.pictureBox1.Location = new System.Drawing.Point(0, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(896, 603);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmConsulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Reservaciones.Properties.Resources.STOCK;
             this.ClientSize = new System.Drawing.Size(892, 601);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.BtnActualizar);
             this.Controls.Add(this.txtIdEstado);
             this.Controls.Add(this.DgvEstado);
@@ -118,12 +152,15 @@
             this.Controls.Add(this.txtConsulta);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.BtnBuscar);
+            this.Controls.Add(this.pictureBox1);
             this.MaximizeBox = false;
             this.Name = "FrmConsulta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmConsulta";
             this.Load += new System.EventHandler(this.FrmConsulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvConsulta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvEstado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +175,8 @@
         private System.Windows.Forms.DataGridView DgvEstado;
         private System.Windows.Forms.TextBox txtIdEstado;
         private System.Windows.Forms.Button BtnActualizar;
+        private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

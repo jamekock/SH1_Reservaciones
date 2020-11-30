@@ -67,6 +67,8 @@ namespace Reservaciones.View
             {
                 MessageBox.Show("Registro  insertado  correctamente");
                 RestablecerControles();
+                ResetDateInfo();
+
             }
             Consultar();
         }
@@ -91,6 +93,8 @@ namespace Reservaciones.View
         private void RestablecerControles()
         {
             this.rtxtMotivo.Clear();
+            
+            
         }
 
         private void DgvProfesional_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -98,6 +102,7 @@ namespace Reservaciones.View
             id_profesional = Convert.ToInt32(DgvProfesional.CurrentRow.Cells[0].Value.ToString());
             txtProfesional.Text = Convert.ToString(id_profesional);
             Execute();
+
         }
 
         private void BtnConsulta_Click(object sender, EventArgs e)
@@ -107,8 +112,11 @@ namespace Reservaciones.View
         }
         public void Execute()
         {
+
+            ResetDateInfo();
             dateItems = new DateItem[366];
             age.GetDisponibilidadProfesional(id_profesional);
+
             DiasNoLaborables();
             foreach (var itemDay in age.num)
             {
@@ -116,6 +124,11 @@ namespace Reservaciones.View
             }
             DisponibilidadCalendar.AddDateInfo(dateItems);
             DisponibilidadCalendar.Refresh();
+        }
+        public void ResetDateInfo()
+        {
+            DisponibilidadCalendar.ResetDateInfo();
+            DisponibilidadCalendar.ClearSelection();
         }
         private void DiasNoLaborables()
         {
@@ -185,5 +198,8 @@ namespace Reservaciones.View
                 }
             }
         }
+
+
+       
     }  
 }

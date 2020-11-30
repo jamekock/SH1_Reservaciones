@@ -166,6 +166,7 @@ namespace Reservaciones.DAO
                 cn.Open();
                 cmd.CommandText = "SELECT * FROM disponibilidad WHERE id_profesional ='" + id + "' ";
                 var reader = cmd.ExecuteReader();
+                num.Clear();
                 while (reader.Read())
                 {
                     int item = reader.GetInt32(1);
@@ -195,13 +196,13 @@ namespace Reservaciones.DAO
         public void ColumnasD()
         {
             TableDays = new DataTable();
-            TableDays.Columns.Add("Id_dias");
+            TableDays.Columns.Add("Id");
             TableDays.Columns.Add("Dias");
         }
         public void ColumnasE()
         {
             TableState = new DataTable();
-            TableState.Columns.Add("Id_estado");
+            TableState.Columns.Add("Id");
             TableState.Columns.Add("Estado");
         }
 

@@ -86,4 +86,49 @@ insert into estado values(2,'Realizada');
 insert into estado values(3,'Pospuesta');
 insert into estado values(4,'Cancelada')
 
+DELIMITER //
+create procedure generar_cita()
+begin 
+	SELECT
+    t1.id_generar,
+    concat(t2.nombre, ' ', t2.apellido) as 'Profesional',
+    concat(t3.nombre, ' ', t3.apellido) as 'Visitante',
+    t4.dias,
+    t1.fecha,
+    t1.motivo,
+    t5.estado,
+    t1.created_at
+FROM
+    generar AS t1
+INNER JOIN profesional AS t2
+ON
+    t1.id_profesional = t2.id_profesional
+INNER JOIN visitante AS t3
+ON
+    t1.id_visitante = t3.id_visitante
+INNER JOIN dias AS t4
+ON
+    t1.id_dias = t4.id_dias
+INNER JOIN estado AS t5
+ON
+    t1.id_estado = t5.id_estado;
+end ;
+//
 
+
+DELIMITER //
+create procedure disponibilidad()
+begin 
+select 
+	t1.id_profesional,
+	concat(t2.nombre, ' ', t2.apellido) as 'Profesional',
+    t1.id_dias,
+	t3.dias as 'Dia'
+from disponibilidad as t1 
+inner join profesional as t2 
+on t1.id_profesional = t2.id_profesional
+inner join dias as t3 
+on t1.id_dias = t3.id_dias;
+end ;
+//
+DELIMITER ;

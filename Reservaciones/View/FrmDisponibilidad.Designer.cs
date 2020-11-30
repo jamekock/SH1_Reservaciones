@@ -158,14 +158,14 @@
             // 
             // txtIdDias
             // 
-            this.txtIdDias.Location = new System.Drawing.Point(503, 220);
+            this.txtIdDias.Location = new System.Drawing.Point(503, 213);
             this.txtIdDias.Name = "txtIdDias";
             this.txtIdDias.Size = new System.Drawing.Size(25, 20);
             this.txtIdDias.TabIndex = 25;
             // 
             // txtIdProfesional
             // 
-            this.txtIdProfesional.Location = new System.Drawing.Point(503, 172);
+            this.txtIdProfesional.Location = new System.Drawing.Point(503, 174);
             this.txtIdProfesional.Name = "txtIdProfesional";
             this.txtIdProfesional.Size = new System.Drawing.Size(25, 20);
             this.txtIdProfesional.TabIndex = 26;
@@ -173,7 +173,7 @@
             // lblIdProfesional
             // 
             this.lblIdProfesional.AutoSize = true;
-            this.lblIdProfesional.Location = new System.Drawing.Point(503, 157);
+            this.lblIdProfesional.Location = new System.Drawing.Point(500, 157);
             this.lblIdProfesional.Name = "lblIdProfesional";
             this.lblIdProfesional.Size = new System.Drawing.Size(71, 13);
             this.lblIdProfesional.TabIndex = 27;
@@ -182,7 +182,7 @@
             // lblIdDias
             // 
             this.lblIdDias.AutoSize = true;
-            this.lblIdDias.Location = new System.Drawing.Point(503, 204);
+            this.lblIdDias.Location = new System.Drawing.Point(503, 197);
             this.lblIdDias.Name = "lblIdDias";
             this.lblIdDias.Size = new System.Drawing.Size(40, 13);
             this.lblIdDias.TabIndex = 28;
@@ -191,7 +191,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Reservaciones.Properties.Resources.STOCK;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, -2);
+            this.pictureBox1.Location = new System.Drawing.Point(-2, -4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(897, 605);
             this.pictureBox1.TabIndex = 29;

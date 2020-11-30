@@ -199,7 +199,7 @@
             this.DgvProfesional.Name = "DgvProfesional";
             this.DgvProfesional.Size = new System.Drawing.Size(163, 60);
             this.DgvProfesional.TabIndex = 25;
-            this.DgvProfesional.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProfesional_CellDoubleClick);
+            this.DgvProfesional.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProfesional_CellDoubleClick);
             // 
             // BtnConsulta
             // 

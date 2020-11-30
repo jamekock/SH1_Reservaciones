@@ -287,6 +287,7 @@
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.pictureBox2);
+            this.MaximizeBox = false;
             this.Name = "FrmProfesional";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmProfesional";

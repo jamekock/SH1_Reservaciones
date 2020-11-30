@@ -71,11 +71,6 @@ namespace Reservaciones.View
         {
 
             bool rs = age.Insertar(id_profesional,id_dias);
-            if (rs)
-            {
-                MessageBox.Show("Registro  insertado  correctamente");
-                
-            }
             Consultar();
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -113,7 +108,7 @@ namespace Reservaciones.View
 
         private void DgvDisponibilidad_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            id_dias = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[1].Value.ToString());
+            id_dias = (Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[2].Value.ToString()));
             txtIdDias.Text = Convert.ToString(id_dias);
             id_profesional = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[0].Value.ToString());
             txtIdProfesional.Text = Convert.ToString(id_profesional);

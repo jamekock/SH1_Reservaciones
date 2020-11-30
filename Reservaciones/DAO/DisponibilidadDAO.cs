@@ -50,13 +50,16 @@ namespace Reservaciones.DAO
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "select * from disponibilidad";
+                cmd.CommandText = "disponibilidad";
+                cmd.CommandType = CommandType.StoredProcedure;
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     int id_profesional = reader.GetInt32(0);
-                    int id_dias = reader.GetInt32(1);
-                    table.Rows.Add(id_profesional,id_dias);
+                    string profesional = reader.GetString(1);
+                    int id_dias = reader.GetInt32(2);
+                    string dia = reader.GetString(3);
+                    table.Rows.Add(id_profesional,profesional,id_dias,dia);
                 }
             }
             catch (Exception e)
@@ -129,8 +132,10 @@ namespace Reservaciones.DAO
         private void Columnas()
         {
             table = new DataTable();
-            table.Columns.Add("Id_profesional");
-            table.Columns.Add("Id_dias");
+            table.Columns.Add("Id");
+            table.Columns.Add("Profesional");
+            table.Columns.Add("Id_");
+            table.Columns.Add("Dia");
         }
     }
 }
