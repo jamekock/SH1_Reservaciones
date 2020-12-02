@@ -56,14 +56,16 @@ namespace Reservaciones.DAO
                 while (reader.Read())
                 {
                     int id_generar = reader.GetInt32(0);
-                    string profesional = reader.GetString(1);
-                    string visitante = reader.GetString(2);
-                    string dia = reader.GetString(3);
-                    string fecha = reader.GetString(4);
-                    string motivo = reader.GetString(5);
-                    string estado = reader.GetString(6);
-                    DateTime created_at = reader.GetDateTime(7);
-                    table.Rows.Add(id_generar,profesional, visitante,dia,fecha, motivo,estado, created_at);
+                    int id = reader.GetInt32(1);
+                    string profesional = reader.GetString(2);
+                    int id_ = reader.GetInt32(3);
+                    string visitante = reader.GetString(4);
+                    string dia = reader.GetString(5);
+                    string fecha = reader.GetString(6);
+                    string motivo = reader.GetString(7);
+                    string estado = reader.GetString(8);
+                    DateTime created_at = reader.GetDateTime(9);
+                    table.Rows.Add(id_generar,id,profesional,id_, visitante,dia,fecha, motivo,estado, created_at);
                 }
             }
             catch (Exception e)
@@ -132,13 +134,15 @@ namespace Reservaciones.DAO
         {
             table = new DataTable();
             table.Columns.Add("Id_generar");
+            table.Columns.Add("Id");
             table.Columns.Add("Profesional");
+            table.Columns.Add("Id_");
             table.Columns.Add("Visitante");
             table.Columns.Add("Dia");
             table.Columns.Add("Fecha");
             table.Columns.Add("Motivo");
             table.Columns.Add("Estado");
-            table.Columns.Add("Creado En");
+            table.Columns.Add("Creado en");
         }
         private void Cerrar()
         {

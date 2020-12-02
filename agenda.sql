@@ -84,14 +84,16 @@ insert into dias values(6,'Sabado');
 insert into estado values(1,'Confirmada');
 insert into estado values(2,'Realizada');
 insert into estado values(3,'Pospuesta');
-insert into estado values(4,'Cancelada')
+insert into estado values(4,'Cancelada');
 
 DELIMITER //
 create procedure generar_cita()
 begin 
 	SELECT
     t1.id_generar,
+    t1.id_profesional,
     concat(t2.nombre, ' ', t2.apellido) as 'Profesional',
+    t1.id_visitante,    
     concat(t3.nombre, ' ', t3.apellido) as 'Visitante',
     t4.dias,
     t1.fecha,

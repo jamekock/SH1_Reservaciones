@@ -39,7 +39,6 @@
             this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -53,8 +52,7 @@
             this.tsmAdministrar,
             this.tsmCita,
             this.tsmReportes,
-            this.tsmHelp,
-            this.tsmExit});
+            this.tsmHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(892, 24);
@@ -80,21 +78,21 @@
             // profesionalToolStripMenuItem
             // 
             this.profesionalToolStripMenuItem.Name = "profesionalToolStripMenuItem";
-            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.profesionalToolStripMenuItem.Text = "Profesional";
             this.profesionalToolStripMenuItem.Click += new System.EventHandler(this.ProfesionalToolStripMenuItem_Click);
             // 
             // visitanteToolStripMenuItem
             // 
             this.visitanteToolStripMenuItem.Name = "visitanteToolStripMenuItem";
-            this.visitanteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.visitanteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.visitanteToolStripMenuItem.Text = "Visitante";
             this.visitanteToolStripMenuItem.Click += new System.EventHandler(this.VisitanteToolStripMenuItem_Click);
             // 
             // disponibilidadToolStripMenuItem
             // 
             this.disponibilidadToolStripMenuItem.Name = "disponibilidadToolStripMenuItem";
-            this.disponibilidadToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.disponibilidadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.disponibilidadToolStripMenuItem.Text = "Disponibilidad";
             this.disponibilidadToolStripMenuItem.Click += new System.EventHandler(this.DisponibilidadToolStripMenuItem_Click);
             // 
@@ -111,14 +109,14 @@
             // generarToolStripMenuItem
             // 
             this.generarToolStripMenuItem.Name = "generarToolStripMenuItem";
-            this.generarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.generarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.generarToolStripMenuItem.Text = "Generar";
             this.generarToolStripMenuItem.Click += new System.EventHandler(this.GenerarToolStripMenuItem_Click);
             // 
             // consultarToolStripMenuItem
             // 
             this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
-            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.consultarToolStripMenuItem.Text = "Consultar";
             this.consultarToolStripMenuItem.Click += new System.EventHandler(this.ConsultarToolStripMenuItem_Click);
             // 
@@ -134,12 +132,6 @@
             this.tsmHelp.ShortcutKeyDisplayString = "Help";
             this.tsmHelp.Size = new System.Drawing.Size(44, 20);
             this.tsmHelp.Text = "Help";
-            // 
-            // tsmExit
-            // 
-            this.tsmExit.Name = "tsmExit";
-            this.tsmExit.Size = new System.Drawing.Size(38, 20);
-            this.tsmExit.Text = "Exit";
             // 
             // pictureBox1
             // 
@@ -178,7 +170,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmCita;
         private System.Windows.Forms.ToolStripMenuItem tsmReportes;
         private System.Windows.Forms.ToolStripMenuItem tsmHelp;
-        private System.Windows.Forms.ToolStripMenuItem tsmExit;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem disponibilidadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generarToolStripMenuItem;

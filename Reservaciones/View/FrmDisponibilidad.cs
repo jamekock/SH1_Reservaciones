@@ -27,10 +27,11 @@ namespace Reservaciones.View
             txtProfesional.Enabled = false;
             txtIdDias.Enabled = false;
             txtIdProfesional.Enabled = false;
-
             Consultar2();
             Consultar1();
             Consultar();
+            DgvDisponibilidad.Columns[0].Visible = false;
+            DgvDisponibilidad.Columns[2].Visible = false;
         }
         public void Consultar()
         {
@@ -119,7 +120,7 @@ namespace Reservaciones.View
 
         private void DgvDisponibilidad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            id2 = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[0].Value.ToString());
+            id2 = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[2].Value.ToString());
             txtIdDias.Text = Convert.ToString(id2);
             id1 = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[0].Value.ToString());
             txtIdProfesional.Text = Convert.ToString(id1);
@@ -136,6 +137,22 @@ namespace Reservaciones.View
         private void PictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+        
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

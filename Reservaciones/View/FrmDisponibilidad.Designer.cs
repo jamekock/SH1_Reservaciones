@@ -196,7 +196,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(897, 605);
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+          //  this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // FrmDisponibilidad
             // 
@@ -223,7 +223,7 @@
             this.Name = "FrmDisponibilidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDisponibilidad";
-            this.Load += new System.EventHandler(this.FrmDisponibilidad_Load);
+            //this.Load += new System.EventHandler(this.FrmDisponibilidad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvDisponibilidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProfesional)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDias)).EndInit();

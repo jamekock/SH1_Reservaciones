@@ -33,7 +33,7 @@ namespace Reservaciones.View
 
         private void Consultar()
         {
-            Dgv_Visitante.DataSource = table = age.Consultar(dual);
+            Dgv_Visitante.DataSource = age.Consultar(dual);
         }
 
 
@@ -122,8 +122,8 @@ namespace Reservaciones.View
         }
 
         private void ObtenerId()
-        {
-            id = Convert.ToInt32(Dgv_Visitante.Rows[Dgv_Visitante.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+        {           
+            id = Convert.ToInt32(Dgv_Visitante.CurrentRow.Cells[0].Value.ToString());
         }
 
         public void RestablecerControles()
@@ -160,7 +160,7 @@ namespace Reservaciones.View
         private void Dgv_Visitante_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ObtenerDatos();
-            this.BtnRegistrar.Enabled = false;
+            this.BtnRegistrar.Enabled = true;
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = true;
         }

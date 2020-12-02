@@ -24,6 +24,9 @@ namespace Reservaciones.View
             DgvEstado.Columns[0].Visible = false;
             txtIdEstado.Enabled = false;
             BtnActualizar.Enabled = false;
+            DgvConsulta.Columns[0].Visible = false;
+            DgvConsulta.Columns[1].Visible = false;
+            DgvConsulta.Columns[3].Visible = false;
         }
         public void Consulta()
         {
@@ -44,6 +47,7 @@ namespace Reservaciones.View
             }
         }
 
+
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtConsulta.Clear();
@@ -52,6 +56,24 @@ namespace Reservaciones.View
             (DgvConsulta.DataSource as DataTable).DefaultView.RowFilter = $"";
         }
 
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            ObtenerId();
+            ObtenerIdEstado();
+            DialogResult r =
+            MessageBox.Show("Actualizar",
+            "Esta seguro que desea  Actualizar este registro? ",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            if (r == DialogResult.OK)
+            {
+                bool rs = mod.SetGenerar(id_estado, id);
+                if (rs)
+                {
+                    MessageBox.Show("Registro Actualizado Correctamente");
+                    Consulta();
+                }
+            }
+        }
         private void FrmConsulta_Load(object sender, EventArgs e)
         {
 
@@ -62,7 +84,7 @@ namespace Reservaciones.View
         }
         public void ObtenerId()
         {
-            int id_visitante = Convert.ToInt32(DgvConsulta.CurrentRow.Cells[2].Value.ToString());
+            int id_visitante = Convert.ToInt32(DgvConsulta.CurrentRow.Cells[3].Value.ToString());
             id = age.id_visitante;
             id = id_visitante;
 
@@ -87,23 +109,6 @@ namespace Reservaciones.View
 
         }
 
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            ObtenerId();
-            ObtenerIdEstado();
-            DialogResult r =
-            MessageBox.Show("Actualizar",
-            "Esta seguro que desea  Actualizar este registro? ",
-            MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-            if (r == DialogResult.OK)
-            {
-                bool rs = mod.SetGenerar(id_estado,id);
-                if (rs)
-                {
-                    MessageBox.Show("Registro Actualizado Correctamente");
-                    Consulta();
-                }
-            }
-        }
+
     }
 }

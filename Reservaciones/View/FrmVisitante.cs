@@ -138,8 +138,8 @@ namespace Reservaciones.View
 
         private void ObtenerId()
         {
-            
             id = Convert.ToInt32(Dgv_Visitante.CurrentRow.Cells[0].Value.ToString());
+            
         }
         private void ObtenerDatos()
         {

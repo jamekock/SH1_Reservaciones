@@ -25,6 +25,9 @@ namespace Reservaciones.View
             DgvProfesional.DataSource = age.GetProfesional();
             DgvProfesional.Columns["Id"].Visible = false;
             Consultar();
+            DgvCita.Columns[0].Visible = false;
+            DgvCita.Columns[1].Visible = false;
+            DgvCita.Columns[3].Visible = false;
         }
 
 
@@ -89,7 +92,25 @@ namespace Reservaciones.View
                 RestablecerControles();
             }
         }
-
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            ObtenerId();
+            DialogResult r =
+            MessageBox.Show("Actualizar",
+            "Esta seguro que desea  Actualizar este registro? ",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            if (r == DialogResult.OK)
+            {
+                Fecha = DisponibilidadCalendar.SelectedDates[0].ToShortDateString();
+                id_dias = Convert.ToInt32(DisponibilidadCalendar.SelectedDates[0].DayOfWeek);
+                bool rs = mod.Actualizar(id, id_dias, Fecha, rtxtMotivo.Text);
+                if (rs)
+                {
+                    MessageBox.Show("Registro Actualizado Correctamente");
+                    Consultar();
+                }
+            }
+        }
         private void RestablecerControles()
         {
             this.rtxtMotivo.Clear();
@@ -179,25 +200,7 @@ namespace Reservaciones.View
             this.BtnActualizar.Enabled = true;
         }
         /*id_profesional,id_visitante,id_dias,fecha,motivo,id_estado*/
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            ObtenerId();
-            DialogResult r =
-            MessageBox.Show("Actualizar",
-            "Esta seguro que desea  Actualizar este registro? ",
-            MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-            if (r == DialogResult.OK)
-            {
-                Fecha = DisponibilidadCalendar.SelectedDates[0].ToShortDateString();
-                id_dias = Convert.ToInt32(DisponibilidadCalendar.SelectedDates[0].DayOfWeek);
-                bool rs = mod.Actualizar(id,id_dias,Fecha,rtxtMotivo.Text);
-                if (rs)
-                {
-                    MessageBox.Show("Registro Actualizado Correctamente");
-                    Consultar();
-                }
-            }
-        }
+
 
 
        
