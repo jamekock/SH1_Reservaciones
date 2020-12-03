@@ -13,47 +13,31 @@ namespace Reservaciones
 {
     class DualDAO
     { 
-    
         private DataTable table = null;
-        private DataTable tabla = null;
+        private MySqlCommand cmd = null;
         private MySqlConnection cn = null;
         private MySqlDataReader reader = null;
-        private MySqlCommand cmd = null;
         public List<string> tipos = new List<string>();
         public List<string> telefonos = new List<string>();
-        List<string> objetos = new List<string>();
 
-        public bool Insertar(string dual,string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
+        private void Cerrar()
         {
-            try
+            if (cn != null && cn.State == ConnectionState.Open)
             {
-                cn = Conexion.Conectar();
-                cmd = cn.CreateCommand();
-                cn.Open();
-                cmd.CommandText = "INSERT INTO "+ dual +" (nombre, apellido, documento_identidad, documento_tipo) values ('" + nombre + "','" + apellido + "','" + documento + "','" + tipo + "');";
-                foreach (var item in telefonos.Zip(tipos, (a, b) => new { A = a, B = b }))
-                {
-                    cmd.CommandText += "INSERT INTO telefono_"+ dual +" (id_"+ dual +", telefono, tipo) values(last_insert_id(),'" + item.A + "','" + item.B + "');";
-                }
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    return true;
-                }
-
+                cn.Close();
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                MessageBox.Show(e.StackTrace);
-            }
-            finally
-            {
-                Cerrar();
-            }
-            return false;
         }
-
-        //metodo para consultar
+        private void Columnas()
+        {
+            table = new DataTable();
+            table.Columns.Add("Id");
+            table.Columns.Add("Tipo");
+            table.Columns.Add("Nombre");
+            table.Columns.Add("Apellido");
+            table.Columns.Add("telefono");
+            table.Columns.Add("Documento");
+            table.Columns.Add("telefono_tipo");
+        }
         public DataTable Consultar(string dual)
         {
             try
@@ -88,7 +72,6 @@ namespace Reservaciones
             }
             return table;
         }
-
         public bool Eliminar(string dual,int id)
         {
             try
@@ -112,7 +95,53 @@ namespace Reservaciones
             }
             return false;
         }
-
+        public void GetTelefonos(string dual,int id)
+        {
+            cn = Conexion.Conectar();
+            cmd = cn.CreateCommand();
+            cn.Open();
+            cmd.CommandText = "select * from telefono_" + dual + " where id_"+dual+"= '"+id+"' ";
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                String telefono = reader.GetString(1);
+                String telefono_tipo = reader.GetString(2);
+                if(telefono!= "")
+                {
+                    this.telefonos.Add(telefono);
+                    this.tipos.Add(telefono_tipo);
+                }
+            }
+            Cerrar();
+        }
+        public bool Insertar(string dual,string nombre, string apellido, string documento, string tipo, List<string> telefonos, List<string> tipos)
+        {
+            try
+            {
+                cn = Conexion.Conectar();
+                cmd = cn.CreateCommand();
+                cn.Open();
+                cmd.CommandText = "INSERT INTO "+ dual +" (nombre, apellido, documento_identidad, documento_tipo) values ('" + nombre + "','" + apellido + "','" + documento + "','" + tipo + "');";
+                foreach (var item in telefonos.Zip(tipos, (a, b) => new { A = a, B = b }))
+                {
+                    cmd.CommandText += "INSERT INTO telefono_"+ dual +" (id_"+ dual +", telefono, tipo) values(last_insert_id(),'" + item.A + "','" + item.B + "');";
+                }
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                MessageBox.Show(e.StackTrace);
+            }
+            finally
+            {
+                Cerrar();
+            }
+            return false;
+        }
         public bool Actualizar(string dual, int id, string nombre, string apellido, string documento, string tipo,List<string> telefonos,List<string>tipos)
         {
             try
@@ -140,75 +169,6 @@ namespace Reservaciones
                 Cerrar();
             }
             return false;
-        }
-        public void GetTelefonos(string dual,int id)
-        {
-            cn = Conexion.Conectar();
-            cmd = cn.CreateCommand();
-            cn.Open();
-            cmd.CommandText = "select * from telefono_" + dual + " where id_"+dual+"= '"+id+"' ";
-            reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                String telefono = reader.GetString(1);
-                String telefono_tipo = reader.GetString(2);
-                if(telefono!= "")
-                {
-                    this.telefonos.Add(telefono);
-                    this.tipos.Add(telefono_tipo);
-                }
-            }
-            Cerrar();
-        }
-
-        private void Columnas()
-        {
-            table = new DataTable();
-            table.Columns.Add("Id");
-            table.Columns.Add("Nombre");
-            table.Columns.Add("Apellido");
-            table.Columns.Add("Documento");
-            table.Columns.Add("Tipo");
-            table.Columns.Add("telefono");
-            table.Columns.Add("telefono_tipo");
-        }
-        private void Cerrar()
-        {
-            if (cn != null && cn.State == ConnectionState.Open)
-            {
-                cn.Close();
-            }
-        }
-
-        public DataTable GetConsulta()
-        {
-            try
-            {
-                cn = Conexion.Conectar();
-                var cmd = cn.CreateCommand();
-                cn.Open();
-                cmd.CommandText = "select distinct * from profesional";
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int id_profesional = reader.GetInt32(0);
-                    string nombre = reader.GetString(1);
-                    string apellido = reader.GetString(2);
-                    string documento_identidad = reader.GetString(3);
-                    string documento_tipo = reader.GetString(4);
-                    tabla.Rows.Add(id_profesional, nombre, apellido, documento_identidad, documento_tipo);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                cn.Close();
-            }
-            return tabla;
         }
     }
 }

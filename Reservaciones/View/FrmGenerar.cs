@@ -7,29 +7,106 @@ namespace Reservaciones.View
 {
     public partial class FrmGenerar : Form
     {
-        DAO.GetDAO age = new DAO.GetDAO();
-        DAO.GenerarDAO mod = new DAO.GenerarDAO();
-
-        private int id;
-        int id_profesional;
         int id_dias;
         int estado = 1;
-        public string Fecha { get; set; }
+        private int id;
+        int id_profesional;
         private DateItem[] dateItems;
+        public string Fecha { get; set; }
+        DAO.GetDAO age = new DAO.GetDAO();
+        DAO.GenerarDAO mod = new DAO.GenerarDAO();
         public FrmGenerar()
         {
             InitializeComponent();
+            Consultar();
+            ConsultarP();
             txtNombre.Enabled = false;
             txtApellido.Enabled = false;
+            BtnEliminar.Enabled = false;
+            BtnActualizar.Enabled = false;
             txtProfesional.Enabled = false;
-            DgvProfesional.DataSource = age.GetProfesional();
-            DgvProfesional.Columns["Id"].Visible = false;
-            Consultar();
             DgvCita.Columns[0].Visible = false;
             DgvCita.Columns[1].Visible = false;
             DgvCita.Columns[3].Visible = false;
+            DgvProfesional.Columns[0].Visible = false;
         }
 
+        private void Consultar()
+        {
+            DgvCita.DataSource = mod.Consultar();
+        }
+        private void ConsultarP()
+        {
+            DgvProfesional.DataSource = age.GetProfesional();
+
+        }
+
+        private void Execute()
+        {
+            ResetDateInfo();
+            dateItems = new DateItem[366];
+            age.GetDisponibilidadProfesional(id_profesional);
+            DiasNoLaborables();
+            foreach (var itemDay in age.num)
+            {
+                DiasLaborables(itemDay);
+            }
+            DisponibilidadCalendar.AddDateInfo(dateItems);
+            DisponibilidadCalendar.Refresh();
+        }
+        public void ResetDateInfo()
+        {
+            DisponibilidadCalendar.ResetDateInfo();
+            DisponibilidadCalendar.ClearSelection();
+        }
+        private void DiasNoLaborables()
+        {
+            DateTime dt = new DateTime(2020, 01, 01);
+            for (int i = 0; i <= 365; i++)
+            {
+                var di = new DateItem();
+                di.Date = dt.AddDays(i);
+                di.Enabled = false;
+                dateItems[i] = di;
+            }
+        }
+        private void DiasLaborables(int dia)
+        {
+            DateTime dt = new DateTime(2020, 01, 01);
+            for (int i = 0; i <= 365; i++)
+            {
+                var d = dt.AddDays(i);
+                if (dateItems[i].Date == d)
+                {
+                    if (d.DayOfWeek == (DayOfWeek)dia)
+                    {
+                        var di = new DateItem();
+                        di.Date = d;
+                        di.BackColor1 = Color.Green;
+                        dateItems[i] = di;
+                    }
+                }
+            }
+        }
+
+        private void ObtenerId()
+        {
+            bool convert = Int32.TryParse(DgvCita.CurrentRow.Cells[0].Value.ToString(),out id);
+            if (convert == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
+        }
+        private void RestablecerControles()
+        {
+            this.age.name = "";
+            this.age.lastname = "";
+            this.txtNombre.Clear();
+            this.rtxtMotivo.Clear();
+            this.txtApellido.Clear();
+            this.txtConsulta.Clear();
+
+        }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
@@ -45,36 +122,20 @@ namespace Reservaciones.View
                 new View.FrmVisitante().Show();
             }
         }
-
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
-            this.txtConsulta.Clear();
-            this.txtNombre.Clear();
-            this.txtApellido.Clear();
             this.age.name = "";
             this.age.lastname = "";
+            this.txtNombre.Clear();
+            this.txtConsulta.Clear();
+            this.txtApellido.Clear();
         }
-
-        private void Consultar()
+        private void BtnConsulta_Click(object sender, EventArgs e)
         {
-            DgvCita.DataSource = mod.Consultar();
+            View.FrmConsulta ventana = new FrmConsulta();
+            ventana.Show();
         }
-        private void BtnRegistrar_Click(object sender, EventArgs e)
-        {
-            // id_profesional,id_visitante,id_dias,fecha,motivo,id_estado
 
-            Fecha = DisponibilidadCalendar.SelectedDates[0].ToShortDateString();
-            id_dias = Convert.ToInt32(DisponibilidadCalendar.SelectedDates[0].DayOfWeek);
-            bool rs = mod.Insertar(id_profesional,age.id_visitante,id_dias,Fecha,rtxtMotivo.Text,estado);
-            if (rs)
-            {
-                MessageBox.Show("Registro  insertado  correctamente");
-                RestablecerControles();
-                ResetDateInfo();
-
-            }
-            Consultar();
-        }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             DialogResult r =
@@ -91,6 +152,19 @@ namespace Reservaciones.View
                 }
                 RestablecerControles();
             }
+        }
+        private void BtnRegistrar_Click(object sender, EventArgs e)
+        {
+            Fecha = DisponibilidadCalendar.SelectedDates[0].ToShortDateString();
+            id_dias = Convert.ToInt32(DisponibilidadCalendar.SelectedDates[0].DayOfWeek);
+            bool rs = mod.Insertar(id_profesional,age.id_visitante,id_dias,Fecha,rtxtMotivo.Text,estado);
+            if (rs)
+            {
+                MessageBox.Show("Registro  insertado  correctamente");
+                RestablecerControles();
+                ResetDateInfo();
+            }
+            Consultar();
         }
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
@@ -109,100 +183,32 @@ namespace Reservaciones.View
                     MessageBox.Show("Registro Actualizado Correctamente");
                     Consultar();
                 }
+                RestablecerControles();
             }
         }
-        private void RestablecerControles()
-        {
-            this.rtxtMotivo.Clear();
-            
-            
-        }
 
-        private void DgvProfesional_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            id_profesional = Convert.ToInt32(DgvProfesional.CurrentRow.Cells[0].Value.ToString());
-            txtProfesional.Text = Convert.ToString(id_profesional);
-            Execute();
-
-        }
-
-        private void BtnConsulta_Click(object sender, EventArgs e)
-        {
-            View.FrmConsulta ventana = new FrmConsulta();
-            ventana.Show();
-        }
-        public void Execute()
-        {
-
-            ResetDateInfo();
-            dateItems = new DateItem[366];
-            age.GetDisponibilidadProfesional(id_profesional);
-
-            DiasNoLaborables();
-            foreach (var itemDay in age.num)
-            {
-                DiasLaborables(itemDay);
-            }
-            DisponibilidadCalendar.AddDateInfo(dateItems);
-            DisponibilidadCalendar.Refresh();
-        }
-        public void ResetDateInfo()
-        {
-            DisponibilidadCalendar.ResetDateInfo();
-            DisponibilidadCalendar.ClearSelection();
-        }
-        private void DiasNoLaborables()
-        {
-            DateTime dt = new DateTime(2020, 01, 01);
-
-            for (int i = 0; i <= 365; i++)
-            {
-                var di = new DateItem();
-                di.Date = dt.AddDays(i);
-                di.Enabled = false;
-                dateItems[i] = di;
-            }
-        }
-        private void DiasLaborables(int dia)
-        {
-            DateTime dt = new DateTime(2020, 01, 01);
-
-            for (int i = 0; i <= 365; i++)
-            {
-                var d = dt.AddDays(i);
-                if (dateItems[i].Date == d)
-                {
-                    if (d.DayOfWeek == (DayOfWeek)dia)
-                    {
-                        var di = new DateItem();
-                        di.Date = d;
-                        di.BackColor1 = Color.Green;
-                        dateItems[i] = di;
-                    }
-                }
-            }
-        }
-        private void ObtenerId()
-        {
-            id = Convert.ToInt32(DgvCita.CurrentRow.Cells[0].Value.ToString());
-        }
         private void DgvCita_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ObtenerId();
             this.BtnEliminar.Enabled = true;
             this.BtnActualizar.Enabled = false;
         }
-
         private void DgvCita_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ObtenerId();
             this.BtnEliminar.Enabled = false;
             this.BtnActualizar.Enabled = true;
         }
-        /*id_profesional,id_visitante,id_dias,fecha,motivo,id_estado*/
+        private void DgvProfesional_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            bool convert = Int32.TryParse(DgvProfesional.CurrentRow.Cells[0].Value.ToString(),out id_profesional);
+            if (convert == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
+            txtProfesional.Text = Convert.ToString(id_profesional);
+            Execute();
 
-
-
-       
+        } 
     }  
 }

@@ -12,36 +12,31 @@ namespace Reservaciones.DAO
     class GenerarDAO
     {
         private DataTable table = null;
+        private MySqlCommand cmd = null;
         private MySqlConnection cn = null;
         private MySqlDataReader reader = null;
-        private MySqlCommand cmd = null;
         public List<string> namepro = new List<string>();
-        public bool Insertar(int id_profesional ,int id_visitante ,int id_dias ,string fecha, string motivo,int estado)
+        private void Cerrar()
         {
-            try
+            if (cn != null && cn.State == ConnectionState.Open)
             {
-                cn = Conexion.Conectar();
-                cmd = cn.CreateCommand();
-                cn.Open();
-                cmd.CommandText = "INSERT INTO generar (id_profesional,id_visitante,id_dias,fecha,motivo,id_estado,created_at) values('" + id_profesional + "','" + id_visitante + "','" + id_dias + "','" + fecha + "','" + motivo + "','" + estado + "',NOW())";
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    return true;
-                }
-
+                cn.Close();
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                MessageBox.Show(e.StackTrace);
-            }
-            finally
-            {
-                Cerrar();
-            }
-            return false;
         }
-
+        private void Columnas()
+        {
+            table = new DataTable();
+            table.Columns.Add("Id");
+            table.Columns.Add("Id_");
+            table.Columns.Add("Dia");
+            table.Columns.Add("Fecha");
+            table.Columns.Add("Estado");
+            table.Columns.Add("Motivo");
+            table.Columns.Add("Creado en");
+            table.Columns.Add("Visitante");
+            table.Columns.Add("Id_generar");
+            table.Columns.Add("Profesional");
+        }
         public DataTable Consultar()
         {
             try
@@ -80,7 +75,6 @@ namespace Reservaciones.DAO
             }
             return table;
         }
-
         public bool Eliminar(int id)
         {
             try
@@ -104,8 +98,31 @@ namespace Reservaciones.DAO
             }
             return false;
         }
+        public bool SetGenerar(int estado,int id)
+        {
+            try
+            {
+                cn = Conexion.Conectar();
+                cmd = cn.CreateCommand();
+                cn.Open();
+                cmd.CommandText = "UPDATE generar set id_estado = '"+estado+"' where id_visitante='"+ id+"'";
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true; 
+                }
 
-        /*id_profesional ,id_visitante ,id_dias ,fecha,motivo,estado,created_at*/
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                MessageBox.Show(e.StackTrace);
+            }
+            finally
+            {
+                Cerrar();
+            }
+            return false;
+        }
         public bool Actualizar(int id,int id_dias,string fecha,string motivo)
         {
             try
@@ -128,42 +145,18 @@ namespace Reservaciones.DAO
                 Cerrar();
             }
             return false;
-        }
-        
-        private void Columnas()
-        {
-            table = new DataTable();
-            table.Columns.Add("Id_generar");
-            table.Columns.Add("Id");
-            table.Columns.Add("Profesional");
-            table.Columns.Add("Id_");
-            table.Columns.Add("Visitante");
-            table.Columns.Add("Dia");
-            table.Columns.Add("Fecha");
-            table.Columns.Add("Motivo");
-            table.Columns.Add("Estado");
-            table.Columns.Add("Creado en");
-        }
-        private void Cerrar()
-        {
-            if (cn != null && cn.State == ConnectionState.Open)
-            {
-                cn.Close();
-            }
-        }
-
-
-        public bool SetGenerar(int estado,int id)
+        }        
+        public bool Insertar(int id_profesional ,int id_visitante ,int id_dias ,string fecha, string motivo,int estado)
         {
             try
             {
                 cn = Conexion.Conectar();
                 cmd = cn.CreateCommand();
                 cn.Open();
-                cmd.CommandText = "UPDATE generar set id_estado = '"+estado+"' where id_visitante='"+ id+"'";
+                cmd.CommandText = "INSERT INTO generar (id_profesional,id_visitante,id_dias,fecha,motivo,id_estado,created_at) values('" + id_profesional + "','" + id_visitante + "','" + id_dias + "','" + fecha + "','" + motivo + "','" + estado + "',NOW())";
                 if (cmd.ExecuteNonQuery() > 0)
                 {
-                    return true; 
+                    return true;
                 }
 
             }

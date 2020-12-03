@@ -12,36 +12,24 @@ namespace Reservaciones.DAO
     class DisponibilidadDAO
     {
         private DataTable table = null;
+        private MySqlCommand cmd = null;
         private MySqlConnection cn = null;
         private MySqlDataReader reader = null;
-        private MySqlCommand cmd = null;
-        public bool Insertar(int id_profesional,int id_dias)
+        private void Cerrar()
         {
-            try
+            if (cn != null && cn.State == ConnectionState.Open)
             {
-                cn = Conexion.Conectar();
-                cmd = cn.CreateCommand();
-                cn.Open();
-                cmd.CommandText = "Insert disponibilidad (id_profesional,id_dias) values('"+id_profesional+"','"+id_dias+"')";
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    return true;
-                }
-
+                cn.Close();
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                MessageBox.Show(e.StackTrace);
-            }
-            finally
-            {
-                Cerrar();
-            }
-            return false;
         }
-
-        //metodo para consultar
+        private void Columnas()
+        {
+            table = new DataTable();
+            table.Columns.Add("Id");
+            table.Columns.Add("Profesional");
+            table.Columns.Add("Id_");
+            table.Columns.Add("Dia");
+        }
         public DataTable Consultar()
         {
             try
@@ -74,7 +62,6 @@ namespace Reservaciones.DAO
             }
             return table;
         }
-
         public bool Eliminar(int id_profesional,int id)
         {
             try
@@ -98,7 +85,30 @@ namespace Reservaciones.DAO
             }
             return false;
         }
-
+        public bool Insertar(int id_profesional,int id_dias)
+        {
+            try
+            {
+                cn = Conexion.Conectar();
+                cmd = cn.CreateCommand();
+                cn.Open();
+                cmd.CommandText = "Insert disponibilidad (id_profesional,id_dias) values('"+id_profesional+"','"+id_dias+"')";
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                MessageBox.Show(e.StackTrace);
+            }
+            finally
+            {
+                Cerrar();
+            }
+            return false;
+        }
         public bool Actualizar(int id_profesional, int id_dias,int id1,int id2)
         {
             try
@@ -121,21 +131,6 @@ namespace Reservaciones.DAO
                 Cerrar();
             }
             return false;
-        }
-        private void Cerrar()
-        {
-            if (cn != null && cn.State == ConnectionState.Open)
-            {
-                cn.Close();
-            }
-        }
-        private void Columnas()
-        {
-            table = new DataTable();
-            table.Columns.Add("Id");
-            table.Columns.Add("Profesional");
-            table.Columns.Add("Id_");
-            table.Columns.Add("Dia");
         }
     }
 }

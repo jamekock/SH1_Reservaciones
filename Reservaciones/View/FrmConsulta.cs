@@ -12,6 +12,7 @@ namespace Reservaciones.View
 {
     public partial class FrmConsulta : Form
     {
+        private int id_visitante;
         private int id_estado;
         private int id;
 
@@ -28,10 +29,16 @@ namespace Reservaciones.View
             DgvConsulta.Columns[1].Visible = false;
             DgvConsulta.Columns[3].Visible = false;
         }
+
         public void Consulta()
         {
             DgvEstado.DataSource = age.GetEstado();
             DgvConsulta.DataSource = mod.Consultar();
+        }
+
+        public void Filter()
+        {
+            (DgvConsulta.DataSource as DataTable).DefaultView.RowFilter = $"id_visitante = '{age.id_visitante}'";
         }
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
@@ -46,14 +53,34 @@ namespace Reservaciones.View
                 new View.FrmVisitante().Show();
             }
         }
-
-
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtConsulta.Clear();
             this.age.name = "";
             this.age.lastname = "";
             (DgvConsulta.DataSource as DataTable).DefaultView.RowFilter = $"";
+        }
+
+        public void ObtenerId()
+        {
+            bool convert = Int32.TryParse(DgvConsulta.CurrentRow.Cells[3].Value.ToString(),out id_visitante);
+            id = age.id_visitante;
+            id = id_visitante;
+            if (convert == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
+
+
+        }
+        private void ObtenerIdEstado()
+        {
+            bool convert = Int32.TryParse(DgvEstado.CurrentRow.Cells[0].Value.ToString(),out id_estado);
+            txtIdEstado.Text = Convert.ToString(id_estado);
+            if (convert == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
@@ -74,39 +101,15 @@ namespace Reservaciones.View
                 }
             }
         }
-        private void FrmConsulta_Load(object sender, EventArgs e)
-        {
-
-        }
-        public void Filter()
-        {
-            (DgvConsulta.DataSource as DataTable).DefaultView.RowFilter = $"id_visitante = '{age.id_visitante}'";
-        }
-        public void ObtenerId()
-        {
-            int id_visitante = Convert.ToInt32(DgvConsulta.CurrentRow.Cells[3].Value.ToString());
-            id = age.id_visitante;
-            id = id_visitante;
-
-
-        }
-        private void ObtenerIdEstado()
-        {
-            id_estado = Convert.ToInt32(DgvEstado.CurrentRow.Cells[0].Value.ToString());
-            txtIdEstado.Text = Convert.ToString(id_estado);
-        }
-
 
         private void DgvEstado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ObtenerIdEstado();
         }
-
         private void DgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ObtenerId();
             BtnActualizar.Enabled = true;
-
         }
 
 

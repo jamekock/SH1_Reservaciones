@@ -60,7 +60,7 @@
             this.txtDocumentoIdentidad.Location = new System.Drawing.Point(319, 340);
             this.txtDocumentoIdentidad.Name = "txtDocumentoIdentidad";
             this.txtDocumentoIdentidad.Size = new System.Drawing.Size(121, 20);
-            this.txtDocumentoIdentidad.TabIndex = 27;
+            this.txtDocumentoIdentidad.TabIndex = 3;
             // 
             // txtNombre
             // 
@@ -68,7 +68,7 @@
             this.txtNombre.Location = new System.Drawing.Point(203, 340);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
-            this.txtNombre.TabIndex = 26;
+            this.txtNombre.TabIndex = 1;
             // 
             // txtApellido
             // 
@@ -76,7 +76,7 @@
             this.txtApellido.Location = new System.Drawing.Point(203, 396);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(100, 20);
-            this.txtApellido.TabIndex = 25;
+            this.txtApellido.TabIndex = 2;
             // 
             // lbTelefono
             // 
@@ -95,7 +95,7 @@
             this.lbTipo.Name = "lbTipo";
             this.lbTipo.Size = new System.Drawing.Size(120, 95);
             this.lbTipo.TabIndex = 23;
-            this.lbTipo.SelectedIndexChanged += new System.EventHandler(this.LbTipo_SelectedIndexChanged);
+         //   this.lbTipo.SelectedIndexChanged += new System.EventHandler(this.LbTipo_SelectedIndexChanged);
             // 
             // cmbDocumentoTipo
             // 
@@ -104,8 +104,8 @@
             this.cmbDocumentoTipo.Location = new System.Drawing.Point(319, 396);
             this.cmbDocumentoTipo.Name = "cmbDocumentoTipo";
             this.cmbDocumentoTipo.Size = new System.Drawing.Size(121, 21);
-            this.cmbDocumentoTipo.TabIndex = 22;
-            this.cmbDocumentoTipo.SelectedIndexChanged += new System.EventHandler(this.CmbDocumentoTipo_SelectedIndexChanged);
+            this.cmbDocumentoTipo.TabIndex = 4;
+           // this.cmbDocumentoTipo.SelectedIndexChanged += new System.EventHandler(this.CmbDocumentoTipo_SelectedIndexChanged);
             // 
             // cmbTelefonoTipo
             // 
@@ -114,7 +114,7 @@
             this.cmbTelefonoTipo.Location = new System.Drawing.Point(577, 339);
             this.cmbTelefonoTipo.Name = "cmbTelefonoTipo";
             this.cmbTelefonoTipo.Size = new System.Drawing.Size(121, 21);
-            this.cmbTelefonoTipo.TabIndex = 21;
+            this.cmbTelefonoTipo.TabIndex = 6;
             // 
             // cmbTelefono
             // 
@@ -123,7 +123,7 @@
             this.cmbTelefono.Location = new System.Drawing.Point(451, 340);
             this.cmbTelefono.Name = "cmbTelefono";
             this.cmbTelefono.Size = new System.Drawing.Size(121, 21);
-            this.cmbTelefono.TabIndex = 20;
+            this.cmbTelefono.TabIndex = 5;
             // 
             // lblTipoTelefono
             // 
@@ -185,7 +185,7 @@
             this.BtnDel.Location = new System.Drawing.Point(578, 468);
             this.BtnDel.Name = "BtnDel";
             this.BtnDel.Size = new System.Drawing.Size(75, 23);
-            this.BtnDel.TabIndex = 28;
+            this.BtnDel.TabIndex = 8;
             this.BtnDel.Text = "Del";
             this.BtnDel.UseVisualStyleBackColor = false;
             this.BtnDel.Click += new System.EventHandler(this.BtnDel_Click);
@@ -195,7 +195,7 @@
             this.BtnEnter.Location = new System.Drawing.Point(497, 468);
             this.BtnEnter.Name = "BtnEnter";
             this.BtnEnter.Size = new System.Drawing.Size(75, 23);
-            this.BtnEnter.TabIndex = 29;
+            this.BtnEnter.TabIndex = 7;
             this.BtnEnter.Text = "Enter";
             this.BtnEnter.UseVisualStyleBackColor = false;
             this.BtnEnter.Click += new System.EventHandler(this.BtnEnter_Click);
@@ -205,7 +205,7 @@
             this.BtnRegistrar.Location = new System.Drawing.Point(203, 439);
             this.BtnRegistrar.Name = "BtnRegistrar";
             this.BtnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.BtnRegistrar.TabIndex = 30;
+            this.BtnRegistrar.TabIndex = 9;
             this.BtnRegistrar.Text = "Registrar";
             this.BtnRegistrar.UseVisualStyleBackColor = false;
             this.BtnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
@@ -215,7 +215,7 @@
             this.BtnActualizar.Location = new System.Drawing.Point(284, 438);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(75, 23);
-            this.BtnActualizar.TabIndex = 31;
+            this.BtnActualizar.TabIndex = 10;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = false;
             this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
@@ -225,7 +225,7 @@
             this.BtnEliminar.Location = new System.Drawing.Point(365, 438);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.BtnEliminar.TabIndex = 32;
+            this.BtnEliminar.TabIndex = 11;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
             this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
@@ -292,7 +292,7 @@
             this.Name = "FrmVisitante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmVisitante";
-            this.Load += new System.EventHandler(this.FrmVisitante_Load);
+           // this.Load += new System.EventHandler(this.FrmVisitante_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Visitante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

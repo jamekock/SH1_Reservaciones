@@ -86,7 +86,7 @@
             this.BtnLimpiar.Location = new System.Drawing.Point(390, 317);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(48, 23);
-            this.BtnLimpiar.TabIndex = 4;
+            this.BtnLimpiar.TabIndex = 2;
             this.BtnLimpiar.Text = "Limpiar";
             this.BtnLimpiar.UseVisualStyleBackColor = false;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
@@ -97,7 +97,7 @@
             this.rtxtMotivo.Location = new System.Drawing.Point(199, 477);
             this.rtxtMotivo.Name = "rtxtMotivo";
             this.rtxtMotivo.Size = new System.Drawing.Size(252, 31);
-            this.rtxtMotivo.TabIndex = 7;
+            this.rtxtMotivo.TabIndex = 3;
             this.rtxtMotivo.Text = "";
             // 
             // lblDocumento
@@ -142,7 +142,7 @@
             this.BtnRegistrar.Location = new System.Drawing.Point(482, 485);
             this.BtnRegistrar.Name = "BtnRegistrar";
             this.BtnRegistrar.Size = new System.Drawing.Size(59, 23);
-            this.BtnRegistrar.TabIndex = 16;
+            this.BtnRegistrar.TabIndex = 5;
             this.BtnRegistrar.Text = "Registrar";
             this.BtnRegistrar.UseVisualStyleBackColor = false;
             this.BtnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
@@ -206,14 +206,14 @@
             this.BtnConsulta.Location = new System.Drawing.Point(685, 98);
             this.BtnConsulta.Name = "BtnConsulta";
             this.BtnConsulta.Size = new System.Drawing.Size(75, 23);
-            this.BtnConsulta.TabIndex = 28;
+            this.BtnConsulta.TabIndex = 7;
             this.BtnConsulta.Text = "Consulta";
             this.BtnConsulta.UseVisualStyleBackColor = false;
             this.BtnConsulta.Click += new System.EventHandler(this.BtnConsulta_Click);
             // 
             // DisponibilidadCalendar
             // 
-            this.DisponibilidadCalendar.ActiveMonth.Month = 11;
+            this.DisponibilidadCalendar.ActiveMonth.Month = 12;
             this.DisponibilidadCalendar.ActiveMonth.Year = 2020;
             this.DisponibilidadCalendar.BorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this.DisponibilidadCalendar.Culture = new System.Globalization.CultureInfo("es-DO");
@@ -236,7 +236,7 @@
             this.DisponibilidadCalendar.Month.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.DisponibilidadCalendar.Name = "DisponibilidadCalendar";
             this.DisponibilidadCalendar.Size = new System.Drawing.Size(227, 172);
-            this.DisponibilidadCalendar.TabIndex = 29;
+            this.DisponibilidadCalendar.TabIndex = 4;
             this.DisponibilidadCalendar.TodayColor = System.Drawing.SystemColors.MenuHighlight;
             this.DisponibilidadCalendar.Weekdays.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.DisponibilidadCalendar.Weekdays.TextColor = System.Drawing.SystemColors.MenuHighlight;
@@ -279,7 +279,7 @@
             this.BtnActualizar.Location = new System.Drawing.Point(612, 485);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(63, 23);
-            this.BtnActualizar.TabIndex = 33;
+            this.BtnActualizar.TabIndex = 6;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = false;
             this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);

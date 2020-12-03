@@ -17,39 +17,25 @@ namespace Reservaciones
             InitializeComponent();
         }
 
+        private void GenerarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new View.FrmGenerar().Show();
+        }
+        private void ConsultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new View.FrmConsulta().Show();
+        }
         private void VisitanteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new View.FrmVisitante().Show(); 
         }
-
         private void ProfesionalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new View.FrmProfesional().Show();
         }
-
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TsmCita_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void GenerarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new View.FrmGenerar().Show();
-
-        }
-
         private void DisponibilidadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new View.FrmDisponibilidad().Show();
-        }
-
-        private void ConsultarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new View.FrmConsulta().Show();
         }
     }
 }

@@ -69,7 +69,7 @@
             this.txtConsulta.Location = new System.Drawing.Point(559, 160);
             this.txtConsulta.Name = "txtConsulta";
             this.txtConsulta.Size = new System.Drawing.Size(100, 20);
-            this.txtConsulta.TabIndex = 4;
+            this.txtConsulta.TabIndex = 1;
             // 
             // DgvConsulta
             // 
@@ -79,7 +79,7 @@
             this.DgvConsulta.Location = new System.Drawing.Point(214, 186);
             this.DgvConsulta.Name = "DgvConsulta";
             this.DgvConsulta.Size = new System.Drawing.Size(445, 159);
-            this.DgvConsulta.TabIndex = 5;
+            this.DgvConsulta.TabIndex = 4;
             this.DgvConsulta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsulta_CellDoubleClick);
             // 
             // DgvEstado
@@ -90,7 +90,7 @@
             this.DgvEstado.Location = new System.Drawing.Point(214, 370);
             this.DgvEstado.Name = "DgvEstado";
             this.DgvEstado.Size = new System.Drawing.Size(144, 112);
-            this.DgvEstado.TabIndex = 6;
+            this.DgvEstado.TabIndex = 2;
             this.DgvEstado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvEstado_CellClick);
             // 
             // txtIdEstado
@@ -105,7 +105,7 @@
             this.BtnActualizar.Location = new System.Drawing.Point(364, 396);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(75, 23);
-            this.BtnActualizar.TabIndex = 8;
+            this.BtnActualizar.TabIndex = 3;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = false;
             this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
@@ -157,7 +157,7 @@
             this.Name = "FrmConsulta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmConsulta";
-            this.Load += new System.EventHandler(this.FrmConsulta_Load);
+//            this.Load += new System.EventHandler(this.FrmConsulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvConsulta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvEstado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

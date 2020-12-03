@@ -12,52 +12,34 @@ namespace Reservaciones.DAO
 {
     class GetDAO
     {
-        private MySqlConnection cn = null;
-        private DataTable TableDays = null;
-        private DataTable TablePro = null;
-        private DataTable TableState = null;
-
         public int id_visitante;
         public string name = "";
         public string lastname = "";
-
-
+        private MySqlConnection cn = null;
+        private DataTable TablePro = null;
+        private DataTable TableDays = null;
+        private DataTable TableState = null;
+        public List<int> num = new List<int>();
         public List<string> dias = new List<string>();
         public List<string> estado = new List<string>();
         public List<string> profesional = new List<string>();
-
-        public List<int> num = new List<int>();
-        public DataTable GetProfesional()
+        public void ColumnasE()
         {
-            try
-            {
-                ColumnasP();
-                cn = Conexion.Conectar();
-                var cmd = cn.CreateCommand();
-                cn.Open();
-                cmd.CommandText = "select id_profesional,concat(nombre,' ',apellido) from profesional";
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int id = reader.GetInt32(0);
-                    string nombrec = reader.GetString(1);
-                    if(nombrec != "")
-                    {
-                        this.profesional.Add(nombrec);
-                    }
-                    TablePro.Rows.Add(id, nombrec);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                MessageBox.Show(e.StackTrace);
-            }
-            finally
-            {
-                cn.Close();           
-            }
-            return TablePro;
+            TableState = new DataTable();
+            TableState.Columns.Add("Id");
+            TableState.Columns.Add("Estado");
+        }
+        public void ColumnasD()
+        {
+            TableDays = new DataTable();
+            TableDays.Columns.Add("Id");
+            TableDays.Columns.Add("Dias");
+        }
+        public void ColumnasP()
+        {
+            TablePro = new DataTable();
+            TablePro.Columns.Add("Id");
+            TablePro.Columns.Add("Nombre");
         }
         public DataTable GetDias()
         {
@@ -91,7 +73,6 @@ namespace Reservaciones.DAO
             }
             return TableDays;
         }
-
         public DataTable GetEstado()
         {
             try
@@ -124,7 +105,38 @@ namespace Reservaciones.DAO
             }
             return TableState;
         }
-
+        public DataTable GetProfesional()
+        {
+            try
+            {
+                ColumnasP();
+                cn = Conexion.Conectar();
+                var cmd = cn.CreateCommand();
+                cn.Open();
+                cmd.CommandText = "select id_profesional,concat(nombre,' ',apellido) from profesional";
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    string nombrec = reader.GetString(1);
+                    if(nombrec != "")
+                    {
+                        this.profesional.Add(nombrec);
+                    }
+                    TablePro.Rows.Add(id, nombrec);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                MessageBox.Show(e.StackTrace);
+            }
+            finally
+            {
+                cn.Close();           
+            }
+            return TablePro;
+        }
         public void GetFiltro(string documento)
         {
             try
@@ -186,26 +198,5 @@ namespace Reservaciones.DAO
                 cn.Close();
             }                       
         }
-        public void ColumnasP()
-        {
-            TablePro = new DataTable();
-            TablePro.Columns.Add("Id");
-            TablePro.Columns.Add("Nombre");
-        }
-
-        public void ColumnasD()
-        {
-            TableDays = new DataTable();
-            TableDays.Columns.Add("Id");
-            TableDays.Columns.Add("Dias");
-        }
-        public void ColumnasE()
-        {
-            TableState = new DataTable();
-            TableState.Columns.Add("Id");
-            TableState.Columns.Add("Estado");
-        }
-
-
     }
 }

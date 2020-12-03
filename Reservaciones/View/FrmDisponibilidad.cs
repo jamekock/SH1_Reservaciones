@@ -12,68 +12,60 @@ namespace Reservaciones.View
 {
     public partial class FrmDisponibilidad : Form
     {
-        int id_dias;
-        int id_profesional;
         int id1;
         int id2;
+        int id_dias;
+        int id_profesional;
         DAO.DisponibilidadDAO age = new DAO.DisponibilidadDAO();
         DAO.GetDAO mod = new DAO.GetDAO();
         public FrmDisponibilidad()
         {
             InitializeComponent();
-            mod.GetProfesional();
-            mod.GetDias();
-            txtDias.Enabled = false;
-            txtProfesional.Enabled = false;
-            txtIdDias.Enabled = false;
-            txtIdProfesional.Enabled = false;
-            Consultar2();
-            Consultar1();
             Consultar();
+            ConsultarD();
+            ConsultarP();
+            mod.GetDias();
+            mod.GetProfesional();
+            txtDias.Enabled = false;
+            txtIdDias.Enabled = false;
+            BtnEliminar.Enabled = false;
+            BtnActualizar.Enabled = false;
+            txtProfesional.Enabled = false;
+            txtIdProfesional.Enabled = false;
             DgvDisponibilidad.Columns[0].Visible = false;
             DgvDisponibilidad.Columns[2].Visible = false;
         }
+
         public void Consultar()
         {
             DgvDisponibilidad.DataSource= age.Consultar();
         }
-
-        public void Consultar1()
+        public void ConsultarP()
         {
             DgvProfesional.DataSource= mod.GetProfesional();
         }
-
-        public void Consultar2()
+        public void ConsultarD()
         {
             DgvDias.DataSource= mod.GetDias();
         }
 
         public void ObtenerIDDay()
         {
-            id_dias = Convert.ToInt32(DgvDias.CurrentRow.Cells[0].Value.ToString());
+            bool convert = Int32.TryParse(DgvDias.CurrentRow.Cells[0].Value.ToString(),out id_dias);
+            if (convert == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
         }
         public void ObtenerIDPro()
         {
-            id_profesional = Convert.ToInt32(DgvProfesional.CurrentRow.Cells[0].Value.ToString());
+            bool convert= Int32.TryParse(DgvProfesional.CurrentRow.Cells[0].Value.ToString(),out id_profesional);
+            if (convert == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
         }
 
-        private void DgvProfesional_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ObtenerIDPro();
-            txtProfesional.Text = Convert.ToString(id_profesional);
-        }
-        private void DgvDias_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ObtenerIDDay();
-            txtDias.Text = Convert.ToString(id_dias);
-        }
-
-        private void BtnRegistrar_Click(object sender, EventArgs e)
-        {
-
-            bool rs = age.Insertar(id_profesional,id_dias);
-            Consultar();
-        }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             DialogResult r =
@@ -89,6 +81,12 @@ namespace Reservaciones.View
                     Consultar();
                 }
             }
+        }
+        private void BtnRegistrar_Click(object sender, EventArgs e)
+        {
+
+            bool rs = age.Insertar(id_profesional,id_dias);
+            Consultar();
         }
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
@@ -107,52 +105,41 @@ namespace Reservaciones.View
             }
         }
 
+        private void DgvDias_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ObtenerIDDay();
+            txtDias.Text = Convert.ToString(id_dias);
+        }
         private void DgvDisponibilidad_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            id_dias = (Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[2].Value.ToString()));
+            bool convert2 = Int32.TryParse(DgvDisponibilidad.CurrentRow.Cells[2].Value.ToString(),out id_dias);
+            bool convert1 = Int32.TryParse(DgvDisponibilidad.CurrentRow.Cells[0].Value.ToString(),out id_profesional);
             txtIdDias.Text = Convert.ToString(id_dias);
-            id_profesional = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[0].Value.ToString());
             txtIdProfesional.Text = Convert.ToString(id_profesional);
-            this.BtnRegistrar.Enabled = true;
+            if (convert2 == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
             this.BtnEliminar.Enabled = true;
             this.BtnActualizar.Enabled = false;
         }
-
+        private void DgvProfesional_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ObtenerIDPro();
+            txtProfesional.Text = Convert.ToString(id_profesional);
+        }
         private void DgvDisponibilidad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            id2 = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[2].Value.ToString());
+            bool convert1 = Int32.TryParse(DgvDisponibilidad.CurrentRow.Cells[0].Value.ToString(),out id1);
+            bool convert2 = Int32.TryParse(DgvDisponibilidad.CurrentRow.Cells[2].Value.ToString(),out id2);
             txtIdDias.Text = Convert.ToString(id2);
-            id1 = Convert.ToInt32(DgvDisponibilidad.CurrentRow.Cells[0].Value.ToString());
             txtIdProfesional.Text = Convert.ToString(id1);
-            this.BtnRegistrar.Enabled = true;
-            this.BtnActualizar.Enabled = true;
+            if (convert2 == false)
+            {
+                MessageBox.Show("No se encuentra disponible");
+            }
             this.BtnEliminar.Enabled = false;
-        }
-
-        private void FrmDisponibilidad_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-        
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-           
+            this.BtnActualizar.Enabled = true;
         }
     }
 }

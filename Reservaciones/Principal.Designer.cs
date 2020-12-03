@@ -104,19 +104,18 @@
             this.tsmCita.Name = "tsmCita";
             this.tsmCita.Size = new System.Drawing.Size(40, 20);
             this.tsmCita.Text = "Cita";
-            this.tsmCita.Click += new System.EventHandler(this.TsmCita_Click);
             // 
             // generarToolStripMenuItem
             // 
             this.generarToolStripMenuItem.Name = "generarToolStripMenuItem";
-            this.generarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.generarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generarToolStripMenuItem.Text = "Generar";
             this.generarToolStripMenuItem.Click += new System.EventHandler(this.GenerarToolStripMenuItem_Click);
             // 
             // consultarToolStripMenuItem
             // 
             this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
-            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.consultarToolStripMenuItem.Text = "Consultar";
             this.consultarToolStripMenuItem.Click += new System.EventHandler(this.ConsultarToolStripMenuItem_Click);
             // 
@@ -141,7 +140,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(908, 640);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // Principal
             // 
