@@ -26,16 +26,16 @@ namespace Reservaciones.DAO
         private void Columnas()
         {
             table = new DataTable();
+            table.Columns.Add("Id_generar");
             table.Columns.Add("Id");
+            table.Columns.Add("Profesional");
             table.Columns.Add("Id_");
+            table.Columns.Add("Visitante");
             table.Columns.Add("Dia");
             table.Columns.Add("Fecha");
-            table.Columns.Add("Estado");
             table.Columns.Add("Motivo");
+            table.Columns.Add("Estado");
             table.Columns.Add("Creado en");
-            table.Columns.Add("Visitante");
-            table.Columns.Add("Id_generar");
-            table.Columns.Add("Profesional");
         }
         public DataTable Consultar()
         {

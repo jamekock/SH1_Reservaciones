@@ -15,13 +15,13 @@ namespace Reservaciones.View
         private int id_visitante;
         private int id_estado;
         private int id;
-
         DAO.GetDAO age = new DAO.GetDAO();
         DAO.GenerarDAO mod = new DAO.GenerarDAO();
         public FrmConsulta()
         {
             InitializeComponent();
             Consulta();
+            
             DgvEstado.Columns[0].Visible = false;
             txtIdEstado.Enabled = false;
             BtnActualizar.Enabled = false;

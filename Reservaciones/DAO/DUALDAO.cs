@@ -31,11 +31,11 @@ namespace Reservaciones
         {
             table = new DataTable();
             table.Columns.Add("Id");
-            table.Columns.Add("Tipo");
             table.Columns.Add("Nombre");
             table.Columns.Add("Apellido");
-            table.Columns.Add("telefono");
             table.Columns.Add("Documento");
+            table.Columns.Add("Tipo");
+            table.Columns.Add("telefono");
             table.Columns.Add("telefono_tipo");
         }
         public DataTable Consultar(string dual)

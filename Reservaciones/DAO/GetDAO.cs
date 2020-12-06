@@ -19,6 +19,7 @@ namespace Reservaciones.DAO
         private DataTable TablePro = null;
         private DataTable TableDays = null;
         private DataTable TableState = null;
+        private DataTable DataPrueba = null;
         public List<int> num = new List<int>();
         public List<string> dias = new List<string>();
         public List<string> estado = new List<string>();
@@ -197,6 +198,23 @@ namespace Reservaciones.DAO
             {
                 cn.Close();
             }                       
+        }
+
+        public void Cont(int i)
+        {
+            var cn = Conexion.Conectar();
+            var cmd = cn.CreateCommand();
+            cn.Open();
+            cmd.CommandText = "";
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                for (int index = 0; index < i; index++)
+                {
+                    var column = reader.GetValue(index);
+                    DataPrueba.Rows.Add(column);
+                }
+            }
         }
     }
 }
